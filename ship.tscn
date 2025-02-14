@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://gynrmmaqudyp"]
+
+[ext_resource type="Texture2D" uid="uid://c3bf84ebgehlr" path="res://spaceShips_001.png" id="1_3ptb2"]
+[ext_resource type="Script" path="res://ship.gd" id="1_yuxmu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2cox"]
+radius = 40.0
+height = 118.0
+
+[node name="Ship" type="RigidBody2D"]
+script = ExtResource("1_yuxmu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_h2cox")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3ptb2")

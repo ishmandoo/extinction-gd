@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv21e6tas1qoq"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_pel2q"]
+[ext_resource type="PackedScene" uid="uid://cdjn7kpcnu5kf" path="res://planet.tscn" id="1_ywxqe"]
+[ext_resource type="PackedScene" uid="uid://gynrmmaqudyp" path="res://ship.tscn" id="2_eodhk"]
+
+[node name="SolarSystem" type="Node2D"]
+script = ExtResource("1_pel2q")
+
+[node name="Planet" parent="." instance=ExtResource("1_ywxqe")]
+
+[node name="Ship" parent="." instance=ExtResource("2_eodhk")]
+position = Vector2(928, 6)
+gravity_scale = 0.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.3, 0.3)
