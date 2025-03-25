@@ -1,5 +1,9 @@
 extends Node2D
 
+enum State {SETUP, RUN}
+
+var state = State.SETUP
+
 var planets
 var ships
 var creatures
@@ -32,11 +36,18 @@ func gravity_force(ship, planet) -> Vector2:
 	return force_vector
 	
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_pressed("action"):
+		run()
+		
+func run():
+	for ship in ships:
+		ship.run()
+	state = State.RUN
 			
 func _physics_process(delta: float) -> void:
-	for ship in ships:
-		if ship.alive:
-			for planet in planets:
-				var force = delta * gravity_force(ship, planet)
-				ship.apply_force(force)
+	if state == State.RUN:
+		for ship in ships:
+			if ship.alive:
+				for planet in planets:
+					var force = delta * gravity_force(ship, planet)
+					ship.apply_force(force)
