@@ -2,13 +2,25 @@ extends Node2D
 
 var planets
 var ships
+var creatures
 
-const G = 1e9
+const G = 1e11
 
 func _ready() -> void:
 	planets = get_tree().get_nodes_in_group("planets")
 	ships = get_tree().get_nodes_in_group("ships")
+	creatures = get_tree().get_nodes_in_group("creatures")
 	
+	for planet in planets:
+		for ship in ships:
+			planet.connect("body_entered", func(body): _on_crash(body, planet))
+	
+func _on_crash(ship, planet):
+	ship.crash()
+	for creature in creatures:
+		if (ship.global_position - creature.global_position).length() < ship.EXPLOSION_RADIUS:
+			creature.die()
+	print(ship, planet)
 
 func gravity_force(ship, planet) -> Vector2:
 	var direction = planet.global_position - ship.global_position 
@@ -24,5 +36,7 @@ func _process(delta: float) -> void:
 			
 func _physics_process(delta: float) -> void:
 	for ship in ships:
-		for planet in planets:
-			ship.apply_force(gravity_force(ship, planet))
+		if ship.alive:
+			for planet in planets:
+				var force = delta * gravity_force(ship, planet)
+				ship.apply_force(force)
