@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cinp88kxs03pc"
-path="res://.godot/imported/planet00.png-a4baf90dc3cc50081026d77574d2b2b8.ctex"
+uid="uid://druf0no44iphn"
+path="res://.godot/imported/spaceShips_001.png-648cdbe446d19b4692b24d0a2a7e9795.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://planet00.png"
-dest_files=["res://.godot/imported/planet00.png-a4baf90dc3cc50081026d77574d2b2b8.ctex"]
+source_file="res://scenes/Worlds/cow-level/spaceShips_001.png"
+dest_files=["res://.godot/imported/spaceShips_001.png-648cdbe446d19b4692b24d0a2a7e9795.ctex"]
 
 [params]
 

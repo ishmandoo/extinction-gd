@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://74ka5uge0i5t"
-path="res://.godot/imported/cow.png-3bbc401f04bfea021fa6261e8faaeef5.ctex"
+uid="uid://dvwnldl5l57wn"
+path="res://.godot/imported/planet00.png-babf38d87f541014217a9703c582a2f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cow.png"
-dest_files=["res://.godot/imported/cow.png-3bbc401f04bfea021fa6261e8faaeef5.ctex"]
+source_file="res://scenes/Worlds/cow-level/planet00.png"
+dest_files=["res://.godot/imported/planet00.png-babf38d87f541014217a9703c582a2f7.ctex"]
 
 [params]
 

@@ -1,14 +1,11 @@
 extends Area2D
 
-<<<<<<< HEAD
-@export var mass = 1
-=======
+
 @export var mass = 1.
 const creature_angles_deg = [0, 120]
 @onready var radius = $CollisionShape2D.shape.radius
 
-var creature = preload("res://creature.tscn")
->>>>>>> 87ad7e1fff7107cfc0196311e70f447cfdeec58f
+var creature = preload("res://scenes/Worlds/cow-level/creature.tscn")
 
 func _ready() -> void:
 	add_to_group("planets")

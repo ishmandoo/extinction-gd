@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://clapfoxloek16"]
+
+[ext_resource type="Script" path="res://scenes/Worlds/cow-level/main.gd" id="1_tpqwt"]
+[ext_resource type="PackedScene" uid="uid://cdjn7kpcnu5kf" path="res://scenes/Worlds/cow-level/planet.tscn" id="1_ywxqe"]
+[ext_resource type="PackedScene" uid="uid://gynrmmaqudyp" path="res://scenes/Worlds/cow-level/ship.tscn" id="2_eodhk"]
+
+[node name="SolarSystem" type="Node2D"]
+script = ExtResource("1_tpqwt")
+
+[node name="Planet" parent="." instance=ExtResource("1_ywxqe")]
+
+[node name="Ship" parent="." instance=ExtResource("2_eodhk")]
+position = Vector2(928, 6)
+gravity_scale = 0.0
+linear_damp_mode = 1
+angular_damp_mode = 1
+
+[node name="Ship2" parent="." instance=ExtResource("2_eodhk")]
+position = Vector2(-167, 888)
+rotation = -1.82931
+gravity_scale = 0.0
+linear_damp_mode = 1
+angular_damp_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.3, 0.3)

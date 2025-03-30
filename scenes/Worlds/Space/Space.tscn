@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://4kskkx5gm7sc"]
+
+[ext_resource type="Script" path="res://scenes/Worlds/space.gd" id="1_ibt55"]
+[ext_resource type="Texture2D" uid="uid://d3gs2xntofytm" path="res://scenes/Worlds/Space/westerlund.jpg" id="2_7t4oy"]
+
+[node name="Space" type="Node2D"]
+script = ExtResource("1_ibt55")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(586, 305)
+texture = ExtResource("2_7t4oy")

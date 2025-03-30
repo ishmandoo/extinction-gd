@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4p5ibxuvxwbm"]
+
+[ext_resource type="Script" path="res://scenes/Worlds/cow-level/creature.gd" id="1_qmyis"]
+[ext_resource type="Texture2D" uid="uid://ctkdddj7r31qr" path="res://scenes/Worlds/cow-level/cow.png" id="2_126jl"]
+
+[node name="Creature" type="Node2D"]
+script = ExtResource("1_qmyis")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_126jl")
