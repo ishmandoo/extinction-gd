@@ -1,0 +1,38 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7un700hcmt07"]
+
+[ext_resource type="Texture2D" uid="uid://d16istaijjs4h" path="res://scenes/Bodies/oreo/oreo-bottom.png" id="1_s8b43"]
+[ext_resource type="Texture2D" uid="uid://bhqfv3funbuqo" path="res://scenes/Bodies/oreo/oreo-bottom-n.png" id="2_1356m"]
+[ext_resource type="Texture2D" uid="uid://d2f066a2d0u4j" path="res://scenes/Bodies/oreo/oreo-creme.png" id="2_r01r4"]
+[ext_resource type="Texture2D" uid="uid://6ql6aih4fpco" path="res://scenes/Bodies/oreo/oreo-glow.png" id="3_75sk6"]
+[ext_resource type="Texture2D" uid="uid://dmpte5dokbnn" path="res://scenes/Bodies/oreo/oreo-top.png" id="4_lyfnq"]
+[ext_resource type="Texture2D" uid="uid://b6s1rqh5p2580" path="res://scenes/Bodies/oreo/oreo-top-n.png" id="6_uahb4"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xestg"]
+diffuse_texture = ExtResource("1_s8b43")
+normal_texture = ExtResource("2_1356m")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_j7uk8"]
+diffuse_texture = ExtResource("4_lyfnq")
+normal_texture = ExtResource("6_uahb4")
+
+[node name="Oreo" type="Node2D"]
+position = Vector2(104, 89)
+
+[node name="bottom" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_xestg")
+
+[node name="creme" type="Sprite2D" parent="."]
+texture = ExtResource("2_r01r4")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("3_75sk6")
+height = 32.0
+
+[node name="top" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_j7uk8")
+
+[node name="DirectionalLightMask" type="DirectionalLight2D" parent="."]
+color = Color(0, 0, 0, 1)
+blend_mode = 2
+height = 1.0
