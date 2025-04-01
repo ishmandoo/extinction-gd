@@ -9,15 +9,17 @@
 script = ExtResource("1_ibt55")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 position = Vector2(586, 305)
 texture = ExtResource("2_7t4oy")
 
 [node name="Spotlight" parent="." instance=ExtResource("3_ovolt")]
-position = Vector2(674, 307)
+position = Vector2(763, 291)
 energy = 0.48
 height = 4.0
 
 [node name="Oreo" parent="." instance=ExtResource("4_a0v87")]
+modulate = Color(0.533333, 0.513726, 0.533333, 1)
 position = Vector2(622, 323)

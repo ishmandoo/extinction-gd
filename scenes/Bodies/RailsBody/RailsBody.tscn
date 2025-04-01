@@ -1,11 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://lkposgnvdih4"]
+[gd_scene load_steps=5 format=3 uid="uid://lkposgnvdih4"]
+
+[ext_resource type="Texture2D" uid="uid://ibwf1sxtp841" path="res://art/shapes/circle127.png" id="1_0dxp3"]
+[ext_resource type="Script" path="res://scenes/Bodies/RailsBody/rails_body.gd" id="1_bfd1d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pyar0"]
+radius = 61.131
+
+[sub_resource type="Curve2D" id="Curve2D_fr5ui"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -219, -78, 0, 0, 0, 0, 39.9219, -233)
+}
+point_count = 2
 
 [node name="RailsBody" type="StaticBody2D"]
+position = Vector2(960, 540)
+script = ExtResource("1_bfd1d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0dxp3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(453, 233)
 shape = SubResource("CircleShape2D_pyar0")
+
+[node name="Path2D" type="Path2D" parent="."]
+scale = Vector2(0.876712, 1)
+curve = SubResource("Curve2D_fr5ui")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-219, -78)
+rotation = -0.539416
