@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://jnkvat46ph00"
-path="res://.godot/imported/Crocodile.mp3-31fc157ef8425d7e2c0ced1a667ee66f.mp3str"
+path="res://.godot/imported/Crocodile.mp3-a60ca9f18a9dceb4cd7a9332b0e0c01e.mp3str"
 
 [deps]
 
-source_file="res://music/Crocodile/Crocodile.mp3"
-dest_files=["res://.godot/imported/Crocodile.mp3-31fc157ef8425d7e2c0ced1a667ee66f.mp3str"]
+source_file="res://sound/Crocodile/Crocodile.mp3"
+dest_files=["res://.godot/imported/Crocodile.mp3-a60ca9f18a9dceb4cd7a9332b0e0c01e.mp3str"]
 
 [params]
 

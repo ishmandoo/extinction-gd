@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://b5biukeug4eg1"
-path="res://.godot/imported/eightbeats.mp3-60e01754ad2e4b18a20d7840e90a44b1.mp3str"
+path="res://.godot/imported/eightbeats.mp3-3334f568aea50f6c87ec933c4df570a4.mp3str"
 
 [deps]
 
-source_file="res://music/eightbeats.mp3"
-dest_files=["res://.godot/imported/eightbeats.mp3-60e01754ad2e4b18a20d7840e90a44b1.mp3str"]
+source_file="res://sound/eightbeats/eightbeats.mp3"
+dest_files=["res://.godot/imported/eightbeats.mp3-3334f568aea50f6c87ec933c4df570a4.mp3str"]
 
 [params]
 

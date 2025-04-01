@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://ird5n8esaq5e"
-path="res://.godot/imported/Valiant-E.mp3-58ed1d93aa95ff1c2fede066ba77c087.mp3str"
+path="res://.godot/imported/Valiant-E.mp3-e80c568284f14b8f5681078dc6d62522.mp3str"
 
 [deps]
 
-source_file="res://music/Valiant-E/Valiant-E.mp3"
-dest_files=["res://.godot/imported/Valiant-E.mp3-58ed1d93aa95ff1c2fede066ba77c087.mp3str"]
+source_file="res://sound/Valiant-E/Valiant-E.mp3"
+dest_files=["res://.godot/imported/Valiant-E.mp3-e80c568284f14b8f5681078dc6d62522.mp3str"]
 
 [params]
 
