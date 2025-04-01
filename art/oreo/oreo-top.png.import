@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://br3adnwmjoft"
-path="res://.godot/imported/oreo-top.png-287419cf4a71bfe46911d91b1f8b9da9.ctex"
+path="res://.godot/imported/oreo-top.png-5a8e2c49dbd61ca0b11aa9714abc6eae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/oreo-top.png"
-dest_files=["res://.godot/imported/oreo-top.png-287419cf4a71bfe46911d91b1f8b9da9.ctex"]
+source_file="res://art/oreo/oreo-top.png"
+dest_files=["res://.godot/imported/oreo-top.png-5a8e2c49dbd61ca0b11aa9714abc6eae.ctex"]
 
 [params]
 

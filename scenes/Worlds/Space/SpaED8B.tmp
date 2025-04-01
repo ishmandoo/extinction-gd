@@ -1,14 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://4kskkx5gm7sc"]
 
 [ext_resource type="Script" path="res://scenes/Worlds/Space/space.gd" id="1_ibt55"]
+[ext_resource type="Script" path="res://scenes/Worlds/Space/parallax_2d.gd" id="2_0a6qk"]
 [ext_resource type="Texture2D" uid="uid://d3gs2xntofytm" path="res://scenes/Worlds/Space/westerlund.jpg" id="2_7t4oy"]
 [ext_resource type="PackedScene" uid="uid://bpfytk2e4pekm" path="res://scenes/Light/Spotlight.tscn" id="3_ovolt"]
-[ext_resource type="PackedScene" uid="uid://b7un700hcmt07" path="res://scenes/Bodies/oreo/oreo.tscn" id="4_a0v87"]
 
 [node name="Space" type="Node2D"]
 script = ExtResource("1_ibt55")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
+script = ExtResource("2_0a6qk")
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 position = Vector2(586, 305)
@@ -16,8 +17,3 @@ texture = ExtResource("2_7t4oy")
 
 [node name="Spotlight" parent="." instance=ExtResource("3_ovolt")]
 position = Vector2(674, 307)
-energy = 0.48
-height = 4.0
-
-[node name="Oreo" parent="." instance=ExtResource("4_a0v87")]
-position = Vector2(622, 323)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bid7l6vddto2b"
-path="res://.godot/imported/oreo-bottom.png-e41aaac935e1e52c5962e7a101a3f7dc.ctex"
+uid="uid://da3mo5qtjl3jr"
+path="res://.godot/imported/oreo-glow.png-d0557d3a13df51ce7292e87198602690.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/oreo-bottom.png"
-dest_files=["res://.godot/imported/oreo-bottom.png-e41aaac935e1e52c5962e7a101a3f7dc.ctex"]
+source_file="res://art/oreo/oreo-glow.png"
+dest_files=["res://.godot/imported/oreo-glow.png-d0557d3a13df51ce7292e87198602690.ctex"]
 
 [params]
 

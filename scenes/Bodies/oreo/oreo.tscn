@@ -24,15 +24,15 @@ texture = SubResource("CanvasTexture_xestg")
 [node name="creme" type="Sprite2D" parent="."]
 texture = ExtResource("2_r01r4")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="glow2" type="PointLight2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("2_r01r4")
+height = 9.0
+
+[node name="glow" type="PointLight2D" parent="."]
 position = Vector2(0, -1)
 texture = ExtResource("3_75sk6")
 height = 32.0
 
 [node name="top" type="Sprite2D" parent="."]
 texture = SubResource("CanvasTexture_j7uk8")
-
-[node name="DirectionalLightMask" type="DirectionalLight2D" parent="."]
-color = Color(0, 0, 0, 1)
-blend_mode = 2
-height = 1.0

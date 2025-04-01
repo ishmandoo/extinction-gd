@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1mxf76atft0r"
-path="res://.godot/imported/oreo-top-n.png-05517845c8bc9c81b00608809bed2a64.ctex"
+uid="uid://bo82nt6atxp6s"
+path="res://.godot/imported/circle63.png-ac699fe9b111cb478e847edf15990913.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/oreo-top-n.png"
-dest_files=["res://.godot/imported/oreo-top-n.png-05517845c8bc9c81b00608809bed2a64.ctex"]
+source_file="res://art/shapes/circle63.png"
+dest_files=["res://.godot/imported/circle63.png-ac699fe9b111cb478e847edf15990913.ctex"]
 
 [params]
 
