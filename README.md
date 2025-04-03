@@ -1,3 +1,14 @@
+To Do
+=====
+
+- When a GravityBody B enters a GravityBody A, check if B is_massive. If so, add it to A's list of exceptions. Likewise remove it when it exits.
+- Create a Ship type as a gravitybody with targeting, in_range area, sight area
+- Create Ship Powers that Ships own
+- Create Planets with surfaces and edges to populate
+- Planet Powers that Planets own
+
+
+
 Space Objects
 -------------
 
