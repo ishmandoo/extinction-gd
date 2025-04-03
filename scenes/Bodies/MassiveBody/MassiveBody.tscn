@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctby0uoac364b"]
+
+[ext_resource type="Script" path="res://scenes/Bodies/MassiveBody/massive_body.gd" id="1_3wsgq"]
+[ext_resource type="Texture2D" uid="uid://ibwf1sxtp841" path="res://art/shapes/circle127.png" id="2_anmeh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pyar0"]
+radius = 61.131
+
+[sub_resource type="Curve2D" id="Curve2D_fr5ui"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -80.9844, -15, 0, 0, 0, 0, 114.063, 72, 0, 0, 0, 0, 376.406, -32, 0, 0, 0, 0, 199.609, -151)
+}
+point_count = 4
+
+[node name="RailsBody" type="StaticBody2D"]
+script = ExtResource("1_3wsgq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_anmeh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pyar0")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(467, 363)
+scale = Vector2(0.876712, 1)
+curve = SubResource("Curve2D_fr5ui")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-80.9844, -15)
+rotation = 0.41956
+
+[node name="EditorGuide" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 39.0
+offset_top = 48.0
+offset_right = 999.0
+offset_bottom = 588.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="EditorGuide"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="EditorGuide/Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 110.0
+offset_bottom = 22.0
+text = "<--- 127 px --->"
+
+[node name="ColorRect" type="ColorRect" parent="EditorGuide"]
+layout_mode = 0

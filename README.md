@@ -1,15 +1,13 @@
+Space Objects
+-------------
 
-
-- Massive bodies
-    - Have a mass that acts upon gravity_bodies
-- RailsBody
-    - a body on a set path ---- all massive bodies may need to be this
-- Gravity bodies
-    - Accelerate towards massive_bodies
+- GravityBody
+    - is_massive: whether it produces gravity
+    - is_reactive: whether it reacts to gravity
 - Gravity (Control node)
-    - collect massive_bodies and gravity_bodies
-    - calculate potential and acceleration at a point
-    - apply to each gravity_body
+    - collect massive_bodies and reactive_bodies
+    - calculate potential and acceleration
+    - apply acceleration to reactive_bodies
 
 Groups
 ------

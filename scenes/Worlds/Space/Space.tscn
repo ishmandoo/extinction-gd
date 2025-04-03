@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://4kskkx5gm7sc"]
+[gd_scene load_steps=7 format=3 uid="uid://4kskkx5gm7sc"]
 
 [ext_resource type="Script" path="res://scenes/Worlds/Space/space.gd" id="1_ibt55"]
 [ext_resource type="Texture2D" uid="uid://d3gs2xntofytm" path="res://scenes/Worlds/Space/westerlund.jpg" id="2_7t4oy"]
 [ext_resource type="PackedScene" uid="uid://bpfytk2e4pekm" path="res://scenes/Light/Spotlight.tscn" id="3_ovolt"]
 [ext_resource type="PackedScene" uid="uid://b7un700hcmt07" path="res://scenes/Bodies/oreo/oreo.tscn" id="4_a0v87"]
+[ext_resource type="PackedScene" uid="uid://gyfnl3vhuqxw" path="res://scenes/Physics/Gravity.tscn" id="5_gtgex"]
+[ext_resource type="PackedScene" uid="uid://bp78kjt5agwkh" path="res://scenes/Bodies/GravityBody/GravityBody.tscn" id="6_0h3dv"]
 
 [node name="Space" type="Node2D"]
 script = ExtResource("1_ibt55")
@@ -21,4 +23,17 @@ height = 4.0
 
 [node name="Oreo" parent="." instance=ExtResource("4_a0v87")]
 modulate = Color(0.533333, 0.513726, 0.533333, 1)
-position = Vector2(622, 323)
+position = Vector2(296, 54)
+
+[node name="Gravity" parent="." instance=ExtResource("5_gtgex")]
+
+[node name="GravityBody Star" parent="." instance=ExtResource("6_0h3dv")]
+position = Vector2(559, 362)
+label = "Star"
+is_massive = true
+
+[node name="GravityBody Planet" parent="." instance=ExtResource("6_0h3dv")]
+position = Vector2(707, 362)
+label = "orbiter"
+velocity_start = Vector2(0, 80)
+is_reactive = true

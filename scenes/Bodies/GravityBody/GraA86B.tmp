@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp78kjt5agwkh"]
+
+[ext_resource type="Script" path="res://scenes/Bodies/GravityBody/gravity_body.gd" id="1_hceuo"]
+[ext_resource type="Texture2D" uid="uid://ibwf1sxtp841" path="res://art/shapes/circle127.png" id="2_sdq6j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pyar0"]
+radius = 61.131
+
+[sub_resource type="Curve2D" id="Curve2D_fr5ui"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -80.9844, -15, 0, 0, 0, 0, 114.063, 72, 0, 0, 0, 0, 376.406, -32, 0, 0, 0, 0, 199.609, -151)
+}
+point_count = 4
+
+[node name="GravityBody" type="StaticBody2D"]
+script = ExtResource("1_hceuo")
+label = null
+is_massive = null
+mass = null
+is_reactive = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_sdq6j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pyar0")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(467, 363)
+scale = Vector2(0.876712, 1)
+curve = SubResource("Curve2D_fr5ui")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-80.9844, -15)
+rotation = 0.419561
+
+[node name="EditorGuide" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelPanel" type="Panel" parent="EditorGuide"]
+layout_mode = 0
+offset_left = -55.0
+offset_top = -10.0
+offset_right = 55.0
+offset_bottom = 10.0
+
+[node name="Label" type="Label" parent="EditorGuide/LabelPanel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 110.0
+offset_bottom = 22.0
+text = "<--- 127 px --->"
+
+[node name="ColorRect" type="ColorRect" parent="EditorGuide"]
+layout_mode = 0
