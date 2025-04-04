@@ -1,6 +1,7 @@
 To Do
 =====
 
+- When Game pauses Space, Gravity still changes the linear_velocity of GravityBodies. Make it stop!!
 - When a GravityBody B enters a GravityBody A, check if B is_massive. If so, add it to A's list of exceptions. Likewise remove it when it exits.
 - Create a Ship type as a gravitybody with targeting, in_range area, sight area
 - Create Ship Powers that Ships own
