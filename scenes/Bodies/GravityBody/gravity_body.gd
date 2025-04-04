@@ -1,5 +1,9 @@
 extends RigidBody2D
 
+#local gravity. Not the G Gravity uses by default
+@onready var G = 4*PI*PI *10000
+@onready var sprite2D = $"Sprite2D"
+
 #visuals for editing
 @onready var guide = $EditorGuide
 @export var label = "<--- 127 px --->"
@@ -7,7 +11,7 @@ extends RigidBody2D
 #const au = 200 #pixels
 #@onready var window_size = get_window().size
 
-#to be used for on-rails circles
+#to be used for on-rails circlesm,
 const center = Vector2(960,540)/2
 
 @export var velocity_start: Vector2
@@ -32,11 +36,14 @@ var exception_bodies = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_contact_monitor(true)
-	max_contacts_reported = 10
-	$EditorGuide/LabelPanel/Label.text = label
-	add_to_groups()
-	set_velocity(velocity_start)
+	#if unlabeled, remove the panel over the sprite
+	if label == '':
+		$EditorGuide/LabelPanel.queue_free()
+	set_contact_monitor(true) #collision detection
+	max_contacts_reported = 10 #collisions
+	$EditorGuide/LabelPanel/Label.text = label #testing label
+	self.add_to_groups()
+	self.set_velocity(velocity_start)
 	#set_placement()
 	#hide_guide()
 
@@ -50,13 +57,14 @@ func _process(_delta: float) -> void:
 ###############
 
 func add_to_groups():
-	"""groups determine how gravity work"""
+	"""
+	groups determine how gravity work
+	"""
+	self.add_to_group("gravity_bodies")
 	if is_massive:
 		self.add_to_group("massive_bodies")
-		print("added to massive_bodies group")
 	if is_reactive:
 		self.add_to_group("reactive_bodies")
-		print("added to reactive_bodies group")
 
 func set_velocity(velocity):
 	linear_velocity = velocity
@@ -71,9 +79,9 @@ func hide_guide():
 	""" Removes editing labels """
 	guide.hide()
 	
-##################
-#### movement ####
-##################
+######################
+#### acceleration ####
+######################
 
 func accelerate(dV:Vector2):
 	""" add a vector speed """
@@ -82,7 +90,14 @@ func accelerate(dV:Vector2):
 func throttle(dV:float):
 	""" add speed in direction of movement """
 	linear_velocity = (dV + linear_velocity.length()) * linear_velocity.normalized()
+
+func circularize_orbit(host_body):
+	"""Change the velocity to that of a circular orbit around the host Massive Body"""
+	var linear_speed = sqrt(G * host_body.mass / position.distance_to(host_body.position))
+	var velocity_direction = position.direction_to(host_body.position).rotated(PI/2)
+	linear_velocity = linear_speed * velocity_direction
 	
+
 ############################
 #### gravity exceptions ####
 ############################

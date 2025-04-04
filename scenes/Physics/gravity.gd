@@ -2,7 +2,7 @@ extends Control
 
 const au = 128 #pixels
 ###### get the units and value of G right. agree with the acceleration, dist per pixel and time.
-const G = 4*PI*PI * (365)  #units au, year, Msun
+const G = 4*PI*PI *10000  #units au, year, Msun
 
 # do these need to be tracked outside functions?
 @onready var reactive_bodies = []
@@ -35,7 +35,7 @@ func acceleration(x, y, exceptions = []):
 	for massive_body in massive_bodies:
 		if massive_body not in exceptions:
 			var accel_direction = - (Vector2(x,y) - massive_body.position).normalized()
-			A = A + G * accel_direction * massive_body.mass / massive_body.position.distance_to(Vector2(x,y))
+			A = A + G * accel_direction * massive_body.mass / massive_body.position.distance_squared_to(Vector2(x,y))
 			#print("accel direction " + str(accel_direction))
 	return A
 	

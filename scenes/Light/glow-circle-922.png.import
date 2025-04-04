@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8t1jtp88u73y"
-path="res://.godot/imported/circle127.png-700d1b6fbd00e1e102090038a1510a8c.ctex"
+uid="uid://bsvl47uw7xci6"
+path="res://.godot/imported/glow-circle-922.png-1c2eb5b760b4e7bf5cb260972a94b066.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/Bodies/RailsBody/circle127.png"
-dest_files=["res://.godot/imported/circle127.png-700d1b6fbd00e1e102090038a1510a8c.ctex"]
+source_file="res://scenes/Light/glow-circle-922.png"
+dest_files=["res://.godot/imported/glow-circle-922.png-1c2eb5b760b4e7bf5cb260972a94b066.ctex"]
 
 [params]
 

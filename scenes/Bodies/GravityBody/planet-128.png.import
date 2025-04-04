@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ci8nd3p5phnnb"
-path="res://.godot/imported/spotlight_normalsxpt5.png-d72a80a1ee41403661fa558540076bce.ctex"
+uid="uid://bfc3jao0rx626"
+path="res://.godot/imported/planet-128.png-4cfc705dfeb04979d328809ecb77b868.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/light/spotlight_normalsxpt5.png"
-dest_files=["res://.godot/imported/spotlight_normalsxpt5.png-d72a80a1ee41403661fa558540076bce.ctex"]
+source_file="res://scenes/Bodies/GravityBody/planet-128.png"
+dest_files=["res://.godot/imported/planet-128.png-4cfc705dfeb04979d328809ecb77b868.ctex"]
 
 [params]
 

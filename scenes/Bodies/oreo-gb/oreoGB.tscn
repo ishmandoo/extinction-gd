@@ -1,0 +1,47 @@
+[gd_scene load_steps=11 format=3 uid="uid://duvu2xe14q3i8"]
+
+[ext_resource type="PackedScene" uid="uid://bp78kjt5agwkh" path="res://scenes/Bodies/GravityBody/GravityBody.tscn" id="1_ys25f"]
+[ext_resource type="Texture2D" uid="uid://k2ijwbn6805n" path="res://scenes/Bodies/oreo-gb/oreo-bottom.png" id="2_pcl32"]
+[ext_resource type="Texture2D" uid="uid://bwbsjmjhq6vq3" path="res://scenes/Bodies/oreo-gb/oreo-bottom-n.png" id="3_pf6fj"]
+[ext_resource type="Texture2D" uid="uid://b6e1y8luh65as" path="res://scenes/Bodies/oreo-gb/oreo-creme.png" id="4_7tsfj"]
+[ext_resource type="Texture2D" uid="uid://k1adsd0dp2kf" path="res://scenes/Bodies/oreo-gb/oreo-glow.png" id="5_3u1bh"]
+[ext_resource type="Texture2D" uid="uid://dqabskibu6umt" path="res://scenes/Bodies/oreo-gb/oreo-top.png" id="6_v1n1k"]
+[ext_resource type="Texture2D" uid="uid://tmaykcj1h1f" path="res://scenes/Bodies/oreo-gb/oreo-top-n.png" id="7_vb01c"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_warjc"]
+diffuse_texture = ExtResource("2_pcl32")
+normal_texture = ExtResource("3_pf6fj")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_sb5gt"]
+diffuse_texture = ExtResource("4_7tsfj")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_6pwuo"]
+diffuse_texture = ExtResource("6_v1n1k")
+normal_texture = ExtResource("7_vb01c")
+
+[node name="Oreo" instance=ExtResource("1_ys25f")]
+label = ""
+
+[node name="Sprite2D" parent="." index="0"]
+texture = null
+
+[node name="PointLight2D" parent="Sprite2D" index="0"]
+texture = null
+
+[node name="bottom" type="Sprite2D" parent="Sprite2D" index="1"]
+light_mask = 3
+texture = SubResource("CanvasTexture_warjc")
+
+[node name="creme" type="Sprite2D" parent="Sprite2D" index="2"]
+light_mask = 3
+texture = SubResource("CanvasTexture_sb5gt")
+
+[node name="glow" type="PointLight2D" parent="Sprite2D" index="3"]
+position = Vector2(0, -1)
+energy = 4.5
+range_item_cull_mask = 2
+texture = ExtResource("5_3u1bh")
+height = 32.0
+
+[node name="top" type="Sprite2D" parent="Sprite2D" index="4"]
+texture = SubResource("CanvasTexture_6pwuo")

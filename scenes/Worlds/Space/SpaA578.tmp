@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://4kskkx5gm7sc"]
+[gd_scene load_steps=8 format=3 uid="uid://4kskkx5gm7sc"]
 
 [ext_resource type="Script" path="res://scenes/Worlds/Space/space.gd" id="1_ibt55"]
 [ext_resource type="Texture2D" uid="uid://d3gs2xntofytm" path="res://scenes/Worlds/Space/westerlund.jpg" id="2_7t4oy"]
+[ext_resource type="PackedScene" uid="uid://bpfytk2e4pekm" path="res://scenes/Light/Spotlight.tscn" id="3_ovolt"]
+[ext_resource type="Texture2D" uid="uid://bsvl47uw7xci6" path="res://scenes/Light/glow-circle-922.png" id="4_xs0c0"]
 [ext_resource type="PackedScene" uid="uid://gyfnl3vhuqxw" path="res://scenes/Physics/Gravity.tscn" id="5_gtgex"]
 [ext_resource type="PackedScene" uid="uid://bp78kjt5agwkh" path="res://scenes/Bodies/GravityBody/GravityBody.tscn" id="6_0h3dv"]
 [ext_resource type="PackedScene" uid="uid://duvu2xe14q3i8" path="res://scenes/Bodies/oreo-gb/oreoGB.tscn" id="7_yuxo8"]
 
 [node name="Space" type="Node2D"]
-process_mode = 1
 script = ExtResource("1_ibt55")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
@@ -17,35 +18,30 @@ modulate = Color(1, 1, 1, 0.176471)
 position = Vector2(586, 305)
 texture = ExtResource("2_7t4oy")
 
+[node name="Spotlight" parent="." instance=ExtResource("3_ovolt")]
+position = Vector2(763, 291)
+texture = ExtResource("4_xs0c0")
+height = 120.0
+
 [node name="Gravity" parent="." instance=ExtResource("5_gtgex")]
 
 [node name="GravityBody Star" parent="." instance=ExtResource("6_0h3dv")]
 position = Vector2(559, 362)
-label = ""
+label = "Star"
 is_massive = true
 
 [node name="GravityBody Planet" parent="." instance=ExtResource("6_0h3dv")]
 position = Vector2(707, 362)
-label = ""
+label = "orbiter"
 velocity_start = Vector2(0, 30)
 is_reactive = true
 
 [node name="GravityBody Planet2" parent="." instance=ExtResource("6_0h3dv")]
 position = Vector2(948, 184)
-label = ""
+label = "orbiter"
 velocity_start = Vector2(0, 20)
 is_reactive = true
 
 [node name="Oreo" parent="." instance=ExtResource("7_yuxo8")]
-visible = false
 position = Vector2(347, 82)
 is_reactive = true
-
-[node name="CanvasModulate(for darkness)" type="CanvasModulate" parent="."]
-light_mask = 2
-visibility_layer = 2
-color = Color(0.372549, 0.352941, 0.368627, 1)
-
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-energy = 0.6
-height = 0.5

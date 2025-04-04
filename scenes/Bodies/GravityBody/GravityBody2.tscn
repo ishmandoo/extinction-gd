@@ -1,13 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bp78kjt5agwkh"]
+[gd_scene load_steps=8 format=3 uid="uid://deqaos1esyt2q"]
 
-[ext_resource type="Script" path="res://scenes/Bodies/GravityBody/gravity_body.gd" id="1_hceuo"]
-[ext_resource type="Texture2D" uid="uid://bfc3jao0rx626" path="res://scenes/Bodies/GravityBody/planet-128.png" id="2_lxyla"]
-[ext_resource type="Texture2D" uid="uid://c7lrqbdkj06bl" path="res://scenes/Bodies/GravityBody/planet-128-n.png" id="3_amum1"]
-[ext_resource type="Texture2D" uid="uid://bdtuensq2nstp" path="res://scenes/Bodies/GravityBody/glow-circle-246.png" id="4_h6g6y"]
+[ext_resource type="Script" path="res://scenes/Bodies/GravityBody/gravity_body.gd" id="1_yva8h"]
+[ext_resource type="Texture2D" uid="uid://bfc3jao0rx626" path="res://scenes/Bodies/GravityBody/planet-128.png" id="2_pp5qk"]
+[ext_resource type="Texture2D" uid="uid://c7lrqbdkj06bl" path="res://scenes/Bodies/GravityBody/planet-128-n.png" id="3_cwku8"]
+[ext_resource type="Texture2D" uid="uid://x5p6tobd6khu" path="res://art/light/glow-circle/glow-circle-246.png" id="4_mco8m"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_m1vwk"]
-diffuse_texture = ExtResource("2_lxyla")
-normal_texture = ExtResource("3_amum1")
+diffuse_texture = ExtResource("2_pp5qk")
+normal_texture = ExtResource("3_cwku8")
 
 [sub_resource type="Curve2D" id="Curve2D_fr5ui"]
 _data = {
@@ -16,19 +16,22 @@ _data = {
 point_count = 4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pyar0"]
-radius = 14.0357
+radius = 61.131
 
 [node name="GravityBody" type="RigidBody2D"]
 collision_mask = 0
 gravity_scale = 0.0
-script = ExtResource("1_hceuo")
-label = "GravityBody"
+script = ExtResource("1_yva8h")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="SpritesnLights" type="Sprite2D" parent="."]
 texture = SubResource("CanvasTexture_m1vwk")
 
-[node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
-texture = ExtResource("4_h6g6y")
+[node name="glow" type="PointLight2D" parent="SpritesnLights"]
+position = Vector2(0, -2)
+energy = 0.2
+texture = ExtResource("4_mco8m")
+texture_scale = 2.0
+height = 12.0
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(467, 363)
@@ -62,6 +65,7 @@ offset_left = 2.0
 offset_top = -1.0
 offset_right = 110.0
 offset_bottom = 22.0
+text = "<--- 127 px --->"
 
 [node name="ColorRect" type="ColorRect" parent="EditorGuide"]
 layout_mode = 0

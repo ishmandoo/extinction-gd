@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpc6y1en57w48"
-path="res://.godot/imported/spotlightmask.png-98189cc7dc44212be2c67eac16cbf72d.ctex"
+uid="uid://ckiemgw1rt25p"
+path="res://.godot/imported/glow-circle-922.png-7ae6bc2ddf369b52ba62894524e6a3a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/light/spotlightmask.png"
-dest_files=["res://.godot/imported/spotlightmask.png-98189cc7dc44212be2c67eac16cbf72d.ctex"]
+source_file="res://art/glow-circle-922.png"
+dest_files=["res://.godot/imported/glow-circle-922.png-7ae6bc2ddf369b52ba62894524e6a3a8.ctex"]
 
 [params]
 

@@ -19,18 +19,23 @@ normal_texture = ExtResource("6_uahb4")
 position = Vector2(104, 89)
 
 [node name="bottom" type="Sprite2D" parent="."]
+light_mask = 3
 texture = SubResource("CanvasTexture_xestg")
 
 [node name="creme" type="Sprite2D" parent="."]
+light_mask = 3
 texture = ExtResource("2_r01r4")
 
 [node name="glow2" type="PointLight2D" parent="."]
 position = Vector2(0, -2)
+range_item_cull_mask = 2
 texture = ExtResource("2_r01r4")
 height = 9.0
 
 [node name="glow" type="PointLight2D" parent="."]
 position = Vector2(0, -1)
+energy = 4.5
+range_item_cull_mask = 2
 texture = ExtResource("3_75sk6")
 height = 32.0
 

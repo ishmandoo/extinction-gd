@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biiqp8xtfw75r"
-path="res://.godot/imported/spotlight_normals.png-77a4cd69225cfa74513e3155eff9882b.ctex"
+uid="uid://dqabskibu6umt"
+path="res://.godot/imported/oreo-top.png-9e4e57b49d7fd75cb592c7d480389d7b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/light/spotlight_normals.png"
-dest_files=["res://.godot/imported/spotlight_normals.png-77a4cd69225cfa74513e3155eff9882b.ctex"]
+source_file="res://scenes/Bodies/oreo-gb/oreo-top.png"
+dest_files=["res://.godot/imported/oreo-top.png-9e4e57b49d7fd75cb592c7d480389d7b.ctex"]
 
 [params]
 

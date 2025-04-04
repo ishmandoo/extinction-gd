@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b75vsfeniar4v"
-path="res://.godot/imported/spotlight.png-e670f331dddb759f7629ab622bb5b4b8.ctex"
+uid="uid://ralf7r552atw"
+path="res://.godot/imported/spaceShips_001.png-423caed9f289e552a071080415b6b7c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/light/spotlight.png"
-dest_files=["res://.godot/imported/spotlight.png-e670f331dddb759f7629ab622bb5b4b8.ctex"]
+source_file="res://art/cow-level/spaceShips_001.png"
+dest_files=["res://.godot/imported/spaceShips_001.png-423caed9f289e552a071080415b6b7c9.ctex"]
 
 [params]
 

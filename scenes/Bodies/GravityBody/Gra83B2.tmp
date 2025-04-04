@@ -22,7 +22,6 @@ radius = 14.0357
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_hceuo")
-label = "GravityBody"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("CanvasTexture_m1vwk")
@@ -62,6 +61,7 @@ offset_left = 2.0
 offset_top = -1.0
 offset_right = 110.0
 offset_bottom = 22.0
+text = "<--- 127 px --->"
 
 [node name="ColorRect" type="ColorRect" parent="EditorGuide"]
 layout_mode = 0
