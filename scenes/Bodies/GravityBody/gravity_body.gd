@@ -2,6 +2,10 @@ extends RigidBody2D
 
 #local gravity. Not the G Gravity uses by default
 @onready var G = 4*PI*PI *10000
+
+
+#sprite
+@export var size_scale = 1
 @onready var sprite2D = $"Sprite2D"
 
 #visuals for editing
@@ -35,13 +39,21 @@ var exception_bodies = []
 #var phase = phase_start 
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _ready() -> void:	
+	#set the label text
+	$EditorGuide/LabelPanel/Label.text = label #testing label
 	#if unlabeled, remove the panel over the sprite
 	if label == '':
 		$EditorGuide/LabelPanel.queue_free()
+		
+	#collisions
 	set_contact_monitor(true) #collision detection
 	max_contacts_reported = 10 #collisions
-	$EditorGuide/LabelPanel/Label.text = label #testing label
+	
+	#don't self-interact
+	if is_massive:
+		exception_bodies.append(self)
+		
 	self.add_to_groups()
 	self.set_velocity(velocity_start)
 	#set_placement()
@@ -75,6 +87,14 @@ func set_placement():
 	var start_y = center.y
 	position = Vector2(start_x, start_y)
 
+func scale_sprite(scale_xy:Vector2, time = 0):
+	if time == 0:
+		sprite2D.scale = scale_xy
+	else:
+		var scaler = get_tree().create_tween()
+		scaler.tween_property(sprite2D, "scale", scale_xy, time)
+		
+		
 func hide_guide():
 	""" Removes editing labels """
 	guide.hide()

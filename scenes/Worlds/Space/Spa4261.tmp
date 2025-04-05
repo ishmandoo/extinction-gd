@@ -21,25 +21,30 @@ texture = ExtResource("2_7t4oy")
 
 [node name="GravityBody Star" parent="." instance=ExtResource("6_0h3dv")]
 position = Vector2(463, 263)
+size_scale = null
 label = ""
+velocity_start = null
 is_massive = true
+is_reactive = null
 
 [node name="GravityBody Planet" parent="." instance=ExtResource("6_0h3dv")]
 modulate = Color(0.705882, 0.356863, 1, 1)
 position = Vector2(589, 264)
 mass = 0.5
+size_scale = null
 label = ""
 velocity_start = Vector2(0, 50)
-is_massive = true
+is_massive = null
 is_reactive = true
 
 [node name="GravityBody Planet2" parent="." instance=ExtResource("6_0h3dv")]
 modulate = Color(0.403922, 0.803922, 0.776471, 1)
 position = Vector2(811, 265)
 mass = 0.4
+size_scale = null
 label = ""
 velocity_start = Vector2(0, 30)
-is_massive = true
+is_massive = null
 is_reactive = true
 
 [node name="Oreo" parent="." instance=ExtResource("7_yuxo8")]
