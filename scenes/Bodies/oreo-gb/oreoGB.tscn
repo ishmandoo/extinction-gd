@@ -20,12 +20,12 @@ diffuse_texture = ExtResource("6_v1n1k")
 normal_texture = ExtResource("7_vb01c")
 
 [node name="Oreo" instance=ExtResource("1_ys25f")]
+mass = 0.001
 label = ""
+is_reactive = true
+can_flyby = true
 
 [node name="Sprite2D" parent="." index="0"]
-texture = null
-
-[node name="PointLight2D" parent="Sprite2D" index="0"]
 texture = null
 
 [node name="bottom" type="Sprite2D" parent="Sprite2D" index="1"]
@@ -45,3 +45,8 @@ height = 32.0
 
 [node name="top" type="Sprite2D" parent="Sprite2D" index="4"]
 texture = SubResource("CanvasTexture_6pwuo")
+
+[node name="PointLight2D" parent="Sprite2D" index="5"]
+texture = null
+
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

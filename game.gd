@@ -9,7 +9,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	space.create_oreo(window_size/3, Vector2(-35,20))
-
+	space.create_oreo_grid(6, 12, Vector2(0, -30))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

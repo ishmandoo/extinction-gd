@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://4kskkx5gm7sc"]
+[gd_scene load_steps=7 format=3 uid="uid://4kskkx5gm7sc"]
 
 [ext_resource type="Script" path="res://scenes/Worlds/Space/space.gd" id="1_ibt55"]
 [ext_resource type="Texture2D" uid="uid://d3gs2xntofytm" path="res://scenes/Worlds/Space/westerlund.jpg" id="2_7t4oy"]
+[ext_resource type="PackedScene" uid="uid://bqb30n241u41g" path="res://scenes/Bodies/planet-gb/Star.tscn" id="4_jji4n"]
+[ext_resource type="PackedScene" uid="uid://buhprwhpwvgrk" path="res://scenes/Bodies/planet-gb/Planet.tscn" id="5_4ceqc"]
 [ext_resource type="PackedScene" uid="uid://gyfnl3vhuqxw" path="res://scenes/Physics/Gravity.tscn" id="5_gtgex"]
-[ext_resource type="PackedScene" uid="uid://bp78kjt5agwkh" path="res://scenes/Bodies/GravityBody/GravityBody.tscn" id="6_0h3dv"]
 [ext_resource type="PackedScene" uid="uid://duvu2xe14q3i8" path="res://scenes/Bodies/oreo-gb/oreoGB.tscn" id="7_yuxo8"]
 
 [node name="Space" type="Node2D"]
@@ -11,6 +12,8 @@ process_mode = 1
 script = ExtResource("1_ibt55")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
+light_mask = 4
+visibility_layer = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 modulate = Color(1, 1, 1, 0.176471)
@@ -19,33 +22,28 @@ texture = ExtResource("2_7t4oy")
 
 [node name="Gravity" parent="." instance=ExtResource("5_gtgex")]
 
-[node name="GravityBody Star" parent="." instance=ExtResource("6_0h3dv")]
+[node name="Star" parent="." instance=ExtResource("4_jji4n")]
 position = Vector2(463, 263)
-label = ""
+mass = 3.0
 is_massive = true
 
-[node name="GravityBody Planet" parent="." instance=ExtResource("6_0h3dv")]
+[node name="Planet" parent="." instance=ExtResource("5_4ceqc")]
 modulate = Color(0.705882, 0.356863, 1, 1)
 position = Vector2(589, 264)
 mass = 0.5
-label = ""
-velocity_start = Vector2(0, 50)
-is_massive = true
-is_reactive = true
+velocity_start = Vector2(0, -60)
 
-[node name="GravityBody Planet2" parent="." instance=ExtResource("6_0h3dv")]
+[node name="Planet2" parent="." instance=ExtResource("5_4ceqc")]
 modulate = Color(0.403922, 0.803922, 0.776471, 1)
-position = Vector2(811, 265)
+position = Vector2(803, 261)
 mass = 0.4
-label = ""
-velocity_start = Vector2(0, 30)
-is_massive = true
-is_reactive = true
+velocity_start = Vector2(0, -45)
 
 [node name="Oreo" parent="." instance=ExtResource("7_yuxo8")]
 visible = false
 position = Vector2(347, 82)
-is_reactive = true
+disable_mode = 0
+collision_layer = 1
 
 [node name="CanvasModulate(for darkness)" type="CanvasModulate" parent="."]
 light_mask = 2
@@ -55,3 +53,6 @@ color = Color(0.372549, 0.352941, 0.368627, 1)
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.6
 height = 0.5
+
+[connection signal="body_shape_entered" from="Oreo" to="Oreo" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="Oreo" to="Oreo" method="_on_body_shape_exited"]

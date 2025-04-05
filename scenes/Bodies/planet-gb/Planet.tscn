@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp78kjt5agwkh"]
+[gd_scene load_steps=9 format=3 uid="uid://buhprwhpwvgrk"]
 
-[ext_resource type="Script" path="res://scenes/Bodies/GravityBody/gravity_body.gd" id="1_hceuo"]
-[ext_resource type="Texture2D" uid="uid://clqin1otj1p03" path="res://icon.svg" id="2_c57nn"]
-[ext_resource type="Texture2D" uid="uid://bdtuensq2nstp" path="res://scenes/Bodies/GravityBody/glow-circle-246.png" id="4_h6g6y"]
+[ext_resource type="Script" path="res://scenes/Bodies/GravityBody/gravity_body.gd" id="1_3vhik"]
+[ext_resource type="Texture2D" uid="uid://bfc3jao0rx626" path="res://scenes/Bodies/GravityBody/planet-128.png" id="2_f2f2q"]
+[ext_resource type="Texture2D" uid="uid://c7lrqbdkj06bl" path="res://scenes/Bodies/GravityBody/planet-128-n.png" id="3_nalx7"]
+[ext_resource type="Texture2D" uid="uid://bdtuensq2nstp" path="res://scenes/Bodies/GravityBody/glow-circle-246.png" id="4_uuoj8"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_m1vwk"]
+diffuse_texture = ExtResource("2_f2f2q")
+normal_texture = ExtResource("3_nalx7")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_y7tbv"]
 polygon = PackedVector2Array(-14, -30, -2, -34, 10, -27, 25, -18, 29, -5, 29, 19, 15, 33, -2, 36, -21, 23, -28, -1, -28, -20)
@@ -13,28 +18,28 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pyar0"]
-radius = 12.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_bdjnn"]
+radius = 51.0392
 
-[node name="GravityBody" type="RigidBody2D"]
+[node name="Planet" type="RigidBody2D"]
 disable_mode = 2
-collision_layer = 0
-collision_mask = 0
 gravity_scale = 0.0
-script = ExtResource("1_hceuo")
-label = "GravityBody"
+script = ExtResource("1_3vhik")
+label = "Planet"
+is_massive = true
+is_reactive = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 light_mask = 7
 visibility_layer = 7
-texture = ExtResource("2_c57nn")
+texture = SubResource("CanvasTexture_m1vwk")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
 occluder = SubResource("OccluderPolygon2D_y7tbv")
 occluder_light_mask = 7
 
 [node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
-texture = ExtResource("4_h6g6y")
+texture = ExtResource("4_uuoj8")
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(467, 363)
@@ -75,8 +80,8 @@ layout_mode = 0
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_pyar0")
+shape = SubResource("CircleShape2D_bdjnn")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -4,9 +4,10 @@ const au = 128 #pixels
 ###### get the units and value of G right. agree with the acceleration, dist per pixel and time.
 const G = 4*PI*PI *10000  #units au, year, Msun
 
-# do these need to be tracked outside functions?
+# tracking bodies with different behaviors
 @onready var reactive_bodies = []
 @onready var massive_bodies = []
+@onready var flyby_bodies = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +20,9 @@ func _process(delta: float) -> void:
 func get_group_bodies():
 	reactive_bodies = get_tree().get_nodes_in_group("reactive_bodies")
 	massive_bodies = get_tree().get_nodes_in_group("massive_bodies")
+	flyby_bodies = get_tree().get_nodes_in_group("flyby_bodies")
+	for flyby_body in flyby_bodies:
+		flyby_body.connect
 
 # alternatively take a Vector2?
 func potential(x, y):

@@ -3,10 +3,15 @@ extends RigidBody2D
 #local gravity. Not the G Gravity uses by default
 @onready var G = 4*PI*PI *10000
 
+var flyby_damping = 1
+var space_damping = 0.0
 
 #sprite
 @export var size_scale = 1
 @onready var sprite2D = $"Sprite2D"
+
+#collision
+@onready var collider = $Area2D/CollisionShape2D
 
 #visuals for editing
 @onready var guide = $EditorGuide
@@ -20,12 +25,15 @@ const center = Vector2(960,540)/2
 
 @export var velocity_start: Vector2
 
-#whether it applies a gravitational field
+## whether the GravityBody applies a gravitational field to reactive bodies
 @export var is_massive:bool
 #@export var mass:float # Msuns.
 
-#whether it accelerates due to gravity
+## whether the GravityBody accelerates due to gravity from other massive GravityBodies
 @export var is_reactive:bool
+
+## whether the GravityBody passes over a massive body without crashing
+@export var can_flyby:bool
 
 # massive bodies to ignore
 # Gravity node reads this
@@ -48,7 +56,7 @@ func _ready() -> void:
 		
 	#collisions
 	set_contact_monitor(true) #collision detection
-	max_contacts_reported = 10 #collisions
+	max_contacts_reported = 10 #limit collisions
 	
 	#don't self-interact
 	if is_massive:
@@ -87,13 +95,14 @@ func set_placement():
 	var start_y = center.y
 	position = Vector2(start_x, start_y)
 
-func scale_sprite(scale_xy:Vector2, time = 0):
+func scale_sprite_and_colliders(scale_xy:Vector2, time = 0):
 	if time == 0:
 		sprite2D.scale = scale_xy
+		collider.scale = scale_xy
 	else:
 		var scaler = get_tree().create_tween()
 		scaler.tween_property(sprite2D, "scale", scale_xy, time)
-		
+		scaler.tween_property(collider, "scale", scale_xy, time)
 		
 func hide_guide():
 	""" Removes editing labels """
@@ -135,14 +144,22 @@ func remove_exception(gravity_body):
 	exception_bodies.erase(gravity_body)
 	print('removing exception body')
 
+func begin_flyby(parent_body):
+	"""excludes a nearby massive GravityBody when close"""
+	self.linear_damp = flyby_damping
+	add_exception(parent_body)
+	
+func end_flyby(parent_body):
+	"""resumes acceleration toward a nearby GravityBody"""
+	self.linear_damp = space_damping
+	remove_exception(parent_body)
 
-func _on_body_entered(body: Node) -> void:
+func _on_area_2d_body_entered(body: Node) -> void:
 	print("body entered!")
-	if body.is_massive:
-		add_exception(body)
+	if body.is_massive and self.can_flyby:
+		begin_flyby(body)
 
-
-func _on_body_exited(body: Node) -> void:
+func _on_area_2d_body_exited(body: Node) -> void:
 	print("body exited!")
-	if body.is_massive:
-		remove_exception(body)
+	if body.is_massive and self.can_flyby:
+		end_flyby(body)
