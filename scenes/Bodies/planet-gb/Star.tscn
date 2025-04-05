@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqb30n241u41g"]
+[gd_scene load_steps=10 format=3 uid="uid://bqb30n241u41g"]
 
 [ext_resource type="Script" path="res://scenes/Bodies/GravityBody/gravity_body.gd" id="1_xyipk"]
 [ext_resource type="Texture2D" uid="uid://bfc3jao0rx626" path="res://scenes/Bodies/GravityBody/planet-128.png" id="2_jd1kk"]
@@ -20,6 +20,9 @@ point_count = 4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pyar0"]
 radius = 50.01
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8d4xw"]
+radius = 49.163
 
 [node name="Star" type="RigidBody2D"]
 disable_mode = 2
@@ -78,6 +81,11 @@ layout_mode = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color(1, 1, 0, 1)
 shape = SubResource("CircleShape2D_pyar0")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_8d4xw")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
