@@ -30,7 +30,6 @@ script = ExtResource("1_hceuo")
 label = "GravityBody"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.517647, 0.360784, 0.819608, 1)
 light_mask = 7
 visibility_layer = 7
 texture = SubResource("CanvasTexture_oqahv")
@@ -82,7 +81,9 @@ layout_mode = 0
 [node name="Shape" type="CollisionShape2D" parent="DragArea"]
 shape = SubResource("CircleShape2D_pyar0")
 
-[node name="BodyShape" type="CollisionShape2D" parent="."]
+[node name="Body" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Body"]
 shape = SubResource("CircleShape2D_tkqff")
 debug_color = Color(0.470588, 0.215686, 0.113725, 0.419608)
 

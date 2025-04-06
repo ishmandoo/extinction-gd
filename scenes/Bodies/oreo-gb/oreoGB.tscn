@@ -48,5 +48,3 @@ texture = SubResource("CanvasTexture_6pwuo")
 
 [node name="PointLight2D" parent="Sprite2D" index="5"]
 texture = null
-
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

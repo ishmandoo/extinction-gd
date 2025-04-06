@@ -7,21 +7,21 @@ var flyby_damping = 1
 var space_damping = 0.0
 
 #sprite
-@export var size_scale = 1
+@export var size_scale:float
 @onready var sprite2D = $"Sprite2D"
 
 #collision
-@onready var collider = $Area2D/CollisionShape2D
+@onready var collider = $BodyShape
 
 #visuals for editing
-@onready var guide = $EditorGuide
+@onready var guide = $Guide
 @export var label = "<--- 127 px --->"
 
 #const au = 200 #pixels
 #@onready var window_size = get_window().size
 
-#to be used for on-rails circlesm,
-const center = Vector2(960,540)/2
+#to be used for on-rails circles
+var center = Vector2(0,0)
 
 @export var velocity_start: Vector2
 
@@ -47,25 +47,25 @@ var exception_bodies = []
 #var phase = phase_start 
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:	
-	#set the label text
-	$EditorGuide/LabelPanel/Label.text = label #testing label
-	#if unlabeled, remove the panel over the sprite
-	if label == '':
-		$EditorGuide/LabelPanel.queue_free()
-		
-	#collisions
+func _ready() -> void:
+	
+	self.set_label()
+	#collisions and sizing
+	scale_sprite_and_colliders(size_scale*Vector2(1,1))
 	set_contact_monitor(true) #collision detection
 	max_contacts_reported = 10 #limit collisions
 	
 	#don't self-interact
 	if is_massive:
-		exception_bodies.append(self)
+		self.add_exception(self)
 		
 	self.add_to_groups()
-	self.set_velocity(velocity_start)
-	#set_placement()
-	#hide_guide()
+	self.set_linear_velocity(velocity_start)
+	#self.set_position(position_start)
+	hide_guide()
+	self.flash(Color(1,1,1,1), 2)
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -75,6 +75,13 @@ func _process(_delta: float) -> void:
 ###############
 #### Setup ####
 ###############
+
+func set_label():
+	#set the label text
+	$Guide/LabelPanel/Label.text = label #testing label
+	#if unlabeled, remove the panel over the sprite
+	if label == '':
+		$Guide/LabelPanel.queue_free()
 
 func add_to_groups():
 	"""
@@ -86,15 +93,6 @@ func add_to_groups():
 	if is_reactive:
 		self.add_to_group("reactive_bodies")
 
-func set_velocity(velocity):
-	linear_velocity = velocity
-
-func set_placement():
-	""" Place the body """
-	var start_x = center.x
-	var start_y = center.y
-	position = Vector2(start_x, start_y)
-
 func scale_sprite_and_colliders(scale_xy:Vector2, time = 0):
 	if time == 0:
 		sprite2D.scale = scale_xy
@@ -104,10 +102,28 @@ func scale_sprite_and_colliders(scale_xy:Vector2, time = 0):
 		scaler.tween_property(sprite2D, "scale", scale_xy, time)
 		scaler.tween_property(collider, "scale", scale_xy, time)
 		
-func hide_guide():
-	""" Removes editing labels """
-	guide.hide()
+
+
+##########################
+#### appearance ##########
+##########################
+
+func flash(peak_color:Color, timedown = 5, timeup = 0.05):
+
+	var initial_color = self.modulate
 	
+	var flasher = get_tree().create_tween()
+	flasher.tween_property(sprite2D, "modulate", peak_color, timeup)
+	flasher.tween_property(sprite2D, "modulate", initial_color, timedown).set_trans(Tween.TRANS_LINEAR)
+
+func show_guide():
+	""" Shows labels """
+	guide.show()
+
+func hide_guide():
+	""" Removes labels """
+	guide.hide()
+
 ######################
 #### acceleration ####
 ######################
@@ -120,11 +136,6 @@ func throttle(dV:float):
 	""" add speed in direction of movement """
 	linear_velocity = (dV + linear_velocity.length()) * linear_velocity.normalized()
 
-func circularize_orbit(host_body):
-	"""Change the velocity to that of a circular orbit around the host Massive Body"""
-	var linear_speed = sqrt(G * host_body.mass / position.distance_to(host_body.position))
-	var velocity_direction = position.direction_to(host_body.position).rotated(PI/2)
-	linear_velocity = linear_speed * velocity_direction
 	
 
 ############################
@@ -143,23 +154,23 @@ func add_exception(gravity_body):
 func remove_exception(gravity_body):
 	exception_bodies.erase(gravity_body)
 	print('removing exception body')
-
-func begin_flyby(parent_body):
-	"""excludes a nearby massive GravityBody when close"""
-	self.linear_damp = flyby_damping
-	add_exception(parent_body)
+#
+#func begin_flyby(parent_body):
+	#"""excludes a nearby massive GravityBody when close"""
+	#self.linear_damp = flyby_damping
+	#add_exception(parent_body)
 	
-func end_flyby(parent_body):
-	"""resumes acceleration toward a nearby GravityBody"""
-	self.linear_damp = space_damping
-	remove_exception(parent_body)
+#func end_flyby(parent_body):
+	#"""resumes acceleration toward a nearby GravityBody"""
+	#self.linear_damp = space_damping
+	#remove_exception(parent_body)
 
 func _on_area_2d_body_entered(body: Node) -> void:
-	print("body entered!")
+	print(str(self) + " body entered " + str(body))
 	if body.is_massive and self.can_flyby:
-		begin_flyby(body)
+		pass
 
 func _on_area_2d_body_exited(body: Node) -> void:
-	print("body exited!")
+	print(str(self) + " body exited " + str(body))
 	if body.is_massive and self.can_flyby:
-		end_flyby(body)
+		pass

@@ -30,10 +30,12 @@ energy = 0.6
 height = 0.5
 
 [node name="Planet1" parent="." instance=ExtResource("4_d74ye")]
-position = Vector2(428, 252)
+position = Vector2(319, 276)
+mass = 2.0
 size_scale = 1.0
 label = "Planet 1"
-velocity_start = Vector2(0, 10)
+position_start = Vector2(500, 270)
+velocity_start = Vector2(0, -25)
 is_massive = true
 is_reactive = true
 
@@ -41,14 +43,15 @@ is_reactive = true
 position = Vector2(659, 281)
 size_scale = 0.5
 label = "Planet B"
-velocity_start = Vector2(0, 25)
+position_start = Vector2(400, 270)
+velocity_start = Vector2(0, 50)
 is_massive = true
 is_reactive = true
 
 [node name="Orbiter" parent="." instance=ExtResource("4_d74ye")]
-position = Vector2(360, 444)
-mass = 0.1
+position = Vector2(491, 424)
 size_scale = 0.2
 label = "Orbiter"
+position_start = Vector2(600, 405)
 velocity_start = Vector2(0, -25)
 is_reactive = true

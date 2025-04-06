@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://10bsndp5knf4"]
+
+[ext_resource type="PackedScene" uid="uid://bp78kjt5agwkh" path="res://scenes/Bodies/GravityBody/GravityBody.tscn" id="1_ys25f"]
+
+[node name="Oreo" instance=ExtResource("1_ys25f")]

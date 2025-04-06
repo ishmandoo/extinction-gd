@@ -1,13 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://bp78kjt5agwkh"]
+[gd_scene load_steps=10 format=3 uid="uid://bqb30n241u41g"]
 
-[ext_resource type="Script" path="res://scenes/Bodies/GravityBody/gravity_body.gd" id="1_hceuo"]
-[ext_resource type="Texture2D" uid="uid://dosvhm8w1ue02" path="res://art/planet-128/planet-128.png" id="2_pqafi"]
-[ext_resource type="Texture2D" uid="uid://crakv1kjpeeyq" path="res://art/planet-128/planet-128-n.png" id="3_xf3lr"]
-[ext_resource type="Texture2D" uid="uid://bdtuensq2nstp" path="res://scenes/Bodies/GravityBody/glow-circle-246.png" id="4_h6g6y"]
+[ext_resource type="Script" path="res://scenes/Bodies/GravityBody/gravity_body.gd" id="1_xyipk"]
+[ext_resource type="Texture2D" uid="uid://bfc3jao0rx626" path="res://scenes/Bodies/GravityBody/planet-128.png" id="2_jd1kk"]
+[ext_resource type="Texture2D" uid="uid://c7lrqbdkj06bl" path="res://scenes/Bodies/GravityBody/planet-128-n.png" id="3_swwh7"]
+[ext_resource type="Texture2D" uid="uid://bdtuensq2nstp" path="res://scenes/Bodies/GravityBody/glow-circle-246.png" id="4_aqcov"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_oqahv"]
-diffuse_texture = ExtResource("2_pqafi")
-normal_texture = ExtResource("3_xf3lr")
+[sub_resource type="CanvasTexture" id="CanvasTexture_m1vwk"]
+diffuse_texture = ExtResource("2_jd1kk")
+normal_texture = ExtResource("3_swwh7")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_y7tbv"]
+polygon = PackedVector2Array(-14, -30, -2, -34, 10, -27, 25, -18, 29, -5, 29, 19, 15, 33, -2, 36, -21, 23, -28, -1, -28, -20)
 
 [sub_resource type="Curve2D" id="Curve2D_fr5ui"]
 _data = {
@@ -16,30 +19,29 @@ _data = {
 point_count = 4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pyar0"]
-radius = 51.0
+radius = 31.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tkqff"]
-radius = 8.24621
+[sub_resource type="CircleShape2D" id="CircleShape2D_8d4xw"]
+radius = 51.0098
 
-[node name="GravityBody" type="RigidBody2D"]
+[node name="Star" type="RigidBody2D"]
 disable_mode = 2
-collision_layer = 0
-collision_mask = 0
 gravity_scale = 0.0
-script = ExtResource("1_hceuo")
-label = "GravityBody"
+script = ExtResource("1_xyipk")
+label = "Star"
+is_massive = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.517647, 0.360784, 0.819608, 1)
 light_mask = 7
 visibility_layer = 7
-texture = SubResource("CanvasTexture_oqahv")
+texture = SubResource("CanvasTexture_m1vwk")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+occluder = SubResource("OccluderPolygon2D_y7tbv")
 occluder_light_mask = 7
 
 [node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
-texture = ExtResource("4_h6g6y")
+texture = ExtResource("4_aqcov")
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(467, 363)
@@ -77,14 +79,14 @@ offset_bottom = 22.0
 [node name="ColorRect" type="ColorRect" parent="Guide"]
 layout_mode = 0
 
-[node name="DragArea" type="Area2D" parent="."]
-
-[node name="Shape" type="CollisionShape2D" parent="DragArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color(1, 1, 0, 1)
 shape = SubResource("CircleShape2D_pyar0")
 
-[node name="BodyShape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_tkqff")
-debug_color = Color(0.470588, 0.215686, 0.113725, 0.419608)
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_8d4xw")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

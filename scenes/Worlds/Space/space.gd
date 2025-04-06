@@ -1,23 +1,29 @@
 extends Node2D
 @onready var gravity = $Gravity
 @onready var window_size = get_window().size
-@onready var star = $"Star"
-@onready var planet1 = $"Planet"
-@onready var planet2 = $"Planet2"
+#@onready var star = $"Star"
+@onready var planet1 = $"Planet1"
+@onready var planetb = $"PlanetB"
+@onready var orbiter = $Orbiter
+
+var oreo_scene = preload("res://scenes/Bodies/oreo/oreoGB.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	planet1.scale_sprite_and_colliders(Vector2(0.5,0.5), 1)
-	planet2.scale_sprite_and_colliders(Vector2(0.5,0.5), 2)
+	#planet1.scale_sprite_and_colliders(Vector2(0.5,0.5), 1)
+	#planet2.scale_sprite_and_colliders(Vector2(0.5,0.5), 2)
+	gravity.circularize_orbit(planetb, planet1)
+	gravity.circularize_orbit(orbiter, planet1)
+	gravity.get_group_bodies()
+	gravity.place_center_of_mass(gravity.gravity_bodies, Vector2(window_size/2), Vector2())
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
 		
 func create_oreo(coordinates, velocity = Vector2(0,0)):
-	var oreo_prime = $Oreo
-	var new_oreo = oreo_prime.duplicate()
-	new_oreo.show()
+	var new_oreo = oreo_scene.instantiate()
 	self.add_child(new_oreo)
 	#need to set velocity and position after adding cuz they depend on parent
 	new_oreo.set_velocity(velocity)

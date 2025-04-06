@@ -1,10 +1,7 @@
 To Do
 =====
 
-- sort out inheritance / copy from GravityBody for star, planet, ships. "Make unique" for sprites, collision shapes if inheriting
 
-- When a GravityBody B enters a GravityBody A, check if B is_massive. If so, add it to A's list of exceptions. Likewise remove it when it exits.
-    - need to separate flyby area and check-flyby area for bodies that are both massive and can-flyby
 - Create a Ship type as a gravitybody with targeting, in_range area, sight area
 - Create Ship Powers that Ships own
 - Create Planets with surfaces and edges to populate
@@ -18,7 +15,15 @@ Space Objects
 - GravityBody
     - is_massive: whether it produces gravity
     - is_reactive: whether it reacts to gravity
-    - can_flyby: whether it ignores the massive body when overlapping. Ships do not crash
+    - can_flyby: whether it ignores the massive body when overlapping. Ships do not necessarily cras
+    - "Body" collision shape outside of Areas!
+    - Areas
+        - Drag area
+            - Slowing due to atmosphere or perspective. 
+        - Surface / Volume / Collider
+            - sub-area of the drag area 
+            - Crash even for flyby
+              
 - Gravity (Control node)
     - collect massive_bodies and reactive_bodies
     - calculate potential and acceleration
@@ -26,5 +31,6 @@ Space Objects
 
 Groups
 ------
-
-- *group* names in plural snake case
+- `gravity_bodies` anything interacting with gravity. should be a GravityBody
+- `massive_bodies` GravityBodys applying gravitational accel
+- `reactive_bodies` GravityBodys accelerating due to gravity
