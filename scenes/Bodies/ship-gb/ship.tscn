@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnt0pvs63b6c0"]
+
+[ext_resource type="PackedScene" uid="uid://bp78kjt5agwkh" path="res://scenes/Bodies/GravityBody/GravityBody.tscn" id="1_l7qt5"]
+[ext_resource type="Script" path="res://scenes/Bodies/ship-gb/ship.gd" id="2_fy0np"]
+[ext_resource type="Texture2D" uid="uid://djqsgkq3h2i8c" path="res://scenes/Bodies/ship-gb/spaceShips_001.png" id="3_07q6a"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_byvxo"]
+diffuse_texture = ExtResource("3_07q6a")
+
+[node name="Ship" instance=ExtResource("1_l7qt5")]
+script = ExtResource("2_fy0np")
+size_scale = 0.2
+label = "ship"
+velocity_start = Vector2(10, 10)
+is_reactive = true
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(1, 1, 1, 1)
+texture = SubResource("CanvasTexture_byvxo")
+
+[node name="ExhaustSprite2D" type="Sprite2D" parent="Sprite2D" index="2"]
+show_behind_parent = true
+position = Vector2(0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D/ExhaustSprite2D" index="0"]
+offset_left = -17.0
+offset_top = -100.0
+offset_right = -7.0
+offset_bottom = -20.0
+color = Color(1, 1, 0.101961, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Sprite2D/ExhaustSprite2D" index="1"]
+offset_left = 9.0
+offset_top = -100.0
+offset_right = 19.0
+offset_bottom = -20.0
+color = Color(1, 1, 0.101961, 1)
+
+[node name="Label" parent="Guide/LabelPanel" index="0"]
+text = "ship"

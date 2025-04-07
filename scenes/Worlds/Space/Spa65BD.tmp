@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/Worlds/Space/space.gd" id="1_ibt55"]
 [ext_resource type="Texture2D" uid="uid://d3gs2xntofytm" path="res://scenes/Worlds/Space/westerlund.jpg" id="2_7t4oy"]
 [ext_resource type="PackedScene" uid="uid://bp78kjt5agwkh" path="res://scenes/Bodies/GravityBody/GravityBody.tscn" id="4_d74ye"]
-[ext_resource type="PackedScene" uid="uid://bnt0pvs63b6c0" path="res://scenes/Bodies/ship-gb/ship.tscn" id="5_0i6pa"]
+[ext_resource type="PackedScene" uid="uid://bnt0pvs63b6c0" path="res://scenes/Bodies/GravityBody/ship.tscn" id="5_aq6kl"]
 [ext_resource type="PackedScene" uid="uid://gyfnl3vhuqxw" path="res://scenes/Physics/Gravity.tscn" id="5_gtgex"]
 
 [node name="Space" type="Node2D"]
@@ -31,16 +31,16 @@ energy = 0.6
 height = 0.5
 
 [node name="Planet1" parent="." instance=ExtResource("4_d74ye")]
-position = Vector2(362, 252)
-size_scale = 0.5
+position = Vector2(428, 252)
+size_scale = 1.0
 label = "Planet 1"
 velocity_start = Vector2(0, 10)
 is_massive = true
 is_reactive = true
 
 [node name="PlanetB" parent="." instance=ExtResource("4_d74ye")]
-position = Vector2(770, 251)
-size_scale = 0.3
+position = Vector2(659, 281)
+size_scale = 0.5
 label = "Planet B"
 velocity_start = Vector2(0, 25)
 is_massive = true
@@ -54,10 +54,5 @@ label = "Orbiter"
 velocity_start = Vector2(0, -25)
 is_reactive = true
 
-[node name="Ship" parent="." instance=ExtResource("5_0i6pa")]
-position = Vector2(219, 150)
-
-[node name="Star" parent="." instance=ExtResource("4_d74ye")]
-position = Vector2(531, 252)
-label = "Star"
-is_massive = true
+[node name="Ship" parent="." instance=ExtResource("5_aq6kl")]
+position = Vector2(485, 355)

@@ -15,7 +15,7 @@ var space_damping = 0.0
 
 #visuals for editing
 @onready var guide = $Guide
-@export var label = "<--- 127 px --->"
+@export var label = ""
 
 #const au = 200 #pixels
 #@onready var window_size = get_window().size
@@ -64,12 +64,13 @@ func _ready() -> void:
 	#self.set_position(position_start)
 	hide_guide()
 	self.flash(Color(1,1,1,1), 2)
-
+	print(str(self) + ": done setup!")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	#orbit(delta)
+	#print(str(self) + " reporting in!")
 	pass
 
 ###############

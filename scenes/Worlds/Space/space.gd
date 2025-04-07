@@ -5,6 +5,7 @@ extends Node2D
 @onready var planet1 = $"Planet1"
 @onready var planetb = $"PlanetB"
 @onready var orbiter = $Orbiter
+@onready var star = $Star
 
 var oreo_scene = preload("res://scenes/Bodies/oreo/oreoGB.tscn")
 
@@ -12,8 +13,9 @@ var oreo_scene = preload("res://scenes/Bodies/oreo/oreoGB.tscn")
 func _ready() -> void:
 	#planet1.scale_sprite_and_colliders(Vector2(0.5,0.5), 1)
 	#planet2.scale_sprite_and_colliders(Vector2(0.5,0.5), 2)
-	gravity.circularize_orbit(planetb, planet1)
-	gravity.circularize_orbit(orbiter, planet1)
+	gravity.circularize_orbit(planet1, star)
+	gravity.circularize_orbit(planetb, star)
+	gravity.circularize_orbit(orbiter, star)
 	gravity.get_group_bodies()
 	gravity.place_center_of_mass(gravity.gravity_bodies, Vector2(window_size/2), Vector2())
 	pass

@@ -81,7 +81,11 @@ text = "transition type"
 
 [node name="TRANSOptionButton" type="OptionButton" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
-focus_mode = 0
+selected = 0
+item_count = 2
+popup/item_0/text = "TRANS_SINE"
+popup/item_1/text = "TRANS_LINEAR"
+popup/item_1/id = 1
 
 [node name="HSeparator" type="HSeparator" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
@@ -89,11 +93,15 @@ layout_mode = 2
 [node name="RichTextLabel2" type="RichTextLabel" parent="Control/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-text = "ease in-out"
+text = "Other parameter"
 
-[node name="EaseButton" type="OptionButton" parent="Control/Panel/VBoxContainer"]
+[node name="OptionButton2" type="OptionButton" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
-focus_mode = 0
+selected = 0
+item_count = 2
+popup/item_0/text = "good"
+popup/item_1/text = "bad"
+popup/item_1/id = 1
 
 [node name="HSeparator2" type="HSeparator" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
@@ -106,30 +114,16 @@ text = "time"
 [node name="TIMETextEdit" type="TextEdit" parent="Control/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
-focus_mode = 1
 text = "1.0"
 
 [node name="HSeparator3" type="HSeparator" parent="Control/Panel/VBoxContainer"]
-layout_mode = 2
-
-[node name="BackAndForthCheckbox" type="CheckBox" parent="Control/Panel/VBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-text = "back and forth"
-
-[node name="ForeverCheckbox" type="CheckBox" parent="Control/Panel/VBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-text = "forever"
-
-[node name="HSeparator4" type="HSeparator" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
 
 [node name="GOButton" type="Button" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
 toggle_mode = true
 keep_pressed_outside = true
-text = "Drop"
+text = "Tween"
 
 [node name="Dropper" type="Node2D" parent="."]
 
@@ -154,5 +148,3 @@ position = Vector2(340, 443)
 [node name="Node2D" type="Node2D" parent="."]
 
 [connection signal="item_selected" from="Control/Panel/VBoxContainer/TRANSOptionButton" to="." method="_on_trans_option_button_item_selected"]
-[connection signal="item_selected" from="Control/Panel/VBoxContainer/EaseButton" to="." method="_on_ease_button_item_selected"]
-[connection signal="text_changed" from="Control/Panel/VBoxContainer/TIMETextEdit" to="." method="_on_time_text_edit_text_changed"]

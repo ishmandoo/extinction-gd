@@ -81,7 +81,7 @@ text = "transition type"
 
 [node name="TRANSOptionButton" type="OptionButton" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
-focus_mode = 0
+selected = 0
 
 [node name="HSeparator" type="HSeparator" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
@@ -93,7 +93,7 @@ text = "ease in-out"
 
 [node name="EaseButton" type="OptionButton" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
-focus_mode = 0
+selected = 0
 
 [node name="HSeparator2" type="HSeparator" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
@@ -106,7 +106,6 @@ text = "time"
 [node name="TIMETextEdit" type="TextEdit" parent="Control/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
-focus_mode = 1
 text = "1.0"
 
 [node name="HSeparator3" type="HSeparator" parent="Control/Panel/VBoxContainer"]
@@ -114,12 +113,11 @@ layout_mode = 2
 
 [node name="BackAndForthCheckbox" type="CheckBox" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
-focus_mode = 0
+button_pressed = true
 text = "back and forth"
 
 [node name="ForeverCheckbox" type="CheckBox" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
-focus_mode = 0
 text = "forever"
 
 [node name="HSeparator4" type="HSeparator" parent="Control/Panel/VBoxContainer"]
@@ -129,7 +127,7 @@ layout_mode = 2
 layout_mode = 2
 toggle_mode = true
 keep_pressed_outside = true
-text = "Drop"
+text = "Tween"
 
 [node name="Dropper" type="Node2D" parent="."]
 
@@ -155,4 +153,3 @@ position = Vector2(340, 443)
 
 [connection signal="item_selected" from="Control/Panel/VBoxContainer/TRANSOptionButton" to="." method="_on_trans_option_button_item_selected"]
 [connection signal="item_selected" from="Control/Panel/VBoxContainer/EaseButton" to="." method="_on_ease_button_item_selected"]
-[connection signal="text_changed" from="Control/Panel/VBoxContainer/TIMETextEdit" to="." method="_on_time_text_edit_text_changed"]
