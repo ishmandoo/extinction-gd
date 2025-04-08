@@ -1,11 +1,12 @@
 extends "res://scenes/Bodies/GravityBody/gravity_body.gd"
 
-var engine_accel = 500 #?/sec
+var engine_accel = 100 #?/sec
 
 @onready var exhaust_sprite = $Sprite2D/ExhaustSprite2D
 
 func _ready():
 	super()
+	add_to_group('ships')
 	exhaust_sprite.hide()
 
 func _process(delta):
@@ -19,14 +20,14 @@ func handle_input(delta):
 	
 	#normal controls
 	if Input.is_action_just_pressed('accelerate'):
-		print('firing engine')
+		print('speed up')
 		exhaust_sprite.show()
 	if Input.is_action_just_released("accelerate"):
-		print('engine off')
+		print('slow down')
 		exhaust_sprite.hide()
 		#print(linear_velocity)
 	if Input.is_action_pressed('accelerate'):
-		fire_engine(delta)
+		self.throttle(delta * engine_accel)
 		
 	if Input.is_action_just_pressed('decelerate'):
 		print('firing reverse')
@@ -38,7 +39,7 @@ func handle_input(delta):
 		exhaust_sprite.hide()
 		#print(linear_velocity)
 	if Input.is_action_pressed("decelerate"):
-		fire_engine(delta, true)
+		self.throttle(-delta * engine_accel)
 
 func handle_asteroids_input(delta):
 	if Input.is_action_just_pressed('ui_up'):

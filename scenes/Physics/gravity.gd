@@ -12,11 +12,24 @@ const G = 4*PI*PI *10000  #units au, year, Msun
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_group_bodies() #needs to be redone if the system changes. Should this just be done in accelerate_reactive_bodies?
+	get_group_bodies() #needs to be redone if any bodies leave or enter the scene. Should this just be done in accelerate_reactive_bodies?
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	accelerate_reactive_bodies(delta)
+	var ship = get_tree().get_first_node_in_group('ships')
+	var massive_bodies = get_tree().get_nodes_in_group("massive_bodies")
+	var orbits = []
+	var orbit
+	for massive_body in massive_bodies:
+		orbit = draw_orbit(ship, massive_body)
+		orbits.append(
+			orbit
+		)
+	var timer = get_tree().create_timer(0.1) #time to show orbits
+	await timer.timeout
+	for orb in orbits:
+		orb.queue_free()
 
 #does Gravity need to track these?
 func get_group_bodies():
@@ -24,22 +37,30 @@ func get_group_bodies():
 	massive_bodies = get_tree().get_nodes_in_group("massive_bodies")
 	reactive_bodies = get_tree().get_nodes_in_group("reactive_bodies")
 
-# alternatively take a Vector2?
+func potential_single(x, y, massive_body):
+	""" calculate the potential at x, y """
+	var V = - massive_body.mass / massive_body.position.distance_to(Vector2(x,y))
+	return V
+
 func potential(x, y):
 	""" calculate the potential at x, y """
 	var V = 0.
 	for massive_body in massive_bodies:
-		V = V - massive_body.mass / massive_body.position.distance_to(Vector2(x,y))
+		V = V + potential_single(x,y,massive_body)
 	return potential
 
-#alternatively take a Vector2?
+
+func acceleration_single(x, y, massive_body):
+	var accel_direction = - (Vector2(x,y) - massive_body.position).normalized()
+	var a = G * accel_direction * massive_body.mass / massive_body.position.distance_squared_to(Vector2(x,y))
+	return a
+	
 func acceleration(x, y, exceptions = []):
 	""" calculate the acceleration at x, y due to all massive_bodies """
 	var A = Vector2(0,0)
 	for massive_body in massive_bodies:
 		if massive_body not in exceptions:
-			var accel_direction = - (Vector2(x,y) - massive_body.position).normalized()
-			A = A + G * accel_direction * massive_body.mass / massive_body.position.distance_squared_to(Vector2(x,y))
+			A = A + acceleration_single(x,y, massive_body)
 			#print("accel direction " + str(accel_direction))
 	return A
 	
@@ -59,6 +80,49 @@ func circularize_orbit(reactive_body, massive_body, clockwise = false):
 		velocity_direction = -velocity_direction
 	reactive_body.linear_velocity = linear_speed * velocity_direction
 
+func get_orbit(reactive_body, massive_body, timestep = 0.1, max_time_ahead = 5) -> Line2D:
+	"""Create a Line2D approximating the future path of the reactive_body around the massive_body,
+	assuming the massive_body is not moving and no other massive_bodys"""
+	var v = reactive_body.linear_velocity
+	var x = reactive_body.position
+	var trajectory = Line2D.new()
+	trajectory.add_point(x)
+	#var no_timesteps = max_time_ahead / timestep
+	var time = 0
+	while time < max_time_ahead:
+		time += timestep
+		var a = acceleration_single(x.x, x.y, massive_body)
+		x = x + v*timestep + (1./2)*a*timestep**2 #make this better if needed
+		v = v + a*timestep
+		trajectory.add_point(x)
+	return trajectory
+
+func draw_orbit(reactive_body, massive_body, color = Color(1,1,1,1)):
+	print("Drawing orbits for " + str(reactive_body))
+	var body1_orbit
+	if reactive_body and massive_body:
+		body1_orbit = get_orbit(reactive_body, massive_body)
+		self.add_child(body1_orbit)
+		body1_orbit.default_color = color
+		body1_orbit.closed = false
+		body1_orbit.width = 1
+		body1_orbit.show()
+		#print("Showing orbit between " + str(reactive_body) + " and " + str(massive_body))
+	return body1_orbit	
+
+func draw_orbits(ship, update_time = 2):
+	var timer = get_tree().create_timer(update_time)
+	var massive_bodies = get_tree().get_nodes_in_group("massive_bodies")
+	var orbits = []
+	var orbit
+	for massive_body in massive_bodies:
+		orbit = draw_orbit(ship, massive_body, Color(.6,.8,1,0.4))
+		orbits.append(
+			orbit
+		)
+	await timer.timeout
+	draw_orbits(ship, update_time)
+	
 func get_cm(bodies):
 	"""center of mass of a list"""
 	var cm = Vector2(0,0)

@@ -53,12 +53,12 @@ fit_content = true
 
 [node name="InfoPanel" type="Panel" parent="."]
 light_mask = 2
-custom_minimum_size = Vector2(250, 80)
+custom_minimum_size = Vector2(250, 120)
 layout_mode = 0
 offset_left = 29.0
 offset_top = 26.0
-offset_right = 279.0
-offset_bottom = 106.0
+offset_right = 303.0
+offset_bottom = 146.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InfoPanel"]
 custom_minimum_size = Vector2(0, 80)
@@ -75,4 +75,5 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "shift+space to pause
 esc to title
-w/s to accelerate"
+w/s to change speed
+arrow keys for asteroids controls"
