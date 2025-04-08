@@ -75,4 +75,4 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "shift+space to pause
 esc to title
-up/down to accelerate"
+w/s to accelerate"

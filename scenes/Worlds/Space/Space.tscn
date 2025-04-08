@@ -55,7 +55,10 @@ velocity_start = Vector2(0, -25)
 is_reactive = true
 
 [node name="Ship" parent="." instance=ExtResource("5_0i6pa")]
+top_level = true
 position = Vector2(219, 150)
+collision_layer = 1
+collision_mask = 1
 
 [node name="Star" parent="." instance=ExtResource("4_d74ye")]
 position = Vector2(531, 252)

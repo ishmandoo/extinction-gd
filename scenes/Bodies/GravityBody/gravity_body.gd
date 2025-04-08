@@ -3,15 +3,17 @@ extends RigidBody2D
 #local gravity. Not the G Gravity uses by default
 @onready var G = 4*PI*PI *10000
 
+#drag to impose on entering flyby bodies
 var flyby_damping = 1
-var space_damping = 0.0
+#var space_damping = 0.0
 
 #sprite
 @export var size_scale:float
 @onready var sprite2D = $"Sprite2D"
 
 #collision
-@onready var collider = $BodyShape
+@onready var bodyarea = $BodyArea
+@onready var dragarea = $DragArea
 
 #visuals for editing
 @onready var guide = $Guide
@@ -48,6 +50,8 @@ var exception_bodies = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	make_connections()
 	
 	self.set_label()
 	#collisions and sizing
@@ -93,17 +97,24 @@ func add_to_groups():
 		self.add_to_group("massive_bodies")
 	if is_reactive:
 		self.add_to_group("reactive_bodies")
+	bodyarea.add_to_group("body_areas")
+	dragarea.add_to_group("drag_areas")
 
 func scale_sprite_and_colliders(scale_xy:Vector2, time = 0):
 	if time == 0:
 		sprite2D.scale = scale_xy
-		collider.scale = scale_xy
+		bodyarea.scale = scale_xy
+		dragarea.scale = scale_xy
 	else:
 		var scaler = get_tree().create_tween()
 		scaler.tween_property(sprite2D, "scale", scale_xy, time)
-		scaler.tween_property(collider, "scale", scale_xy, time)
+		scaler.tween_property(bodyarea, "scale", scale_xy, time)
+		scaler.tween_property(dragarea, "scale", scale_xy, time)
 		
-
+func make_connections():
+	bodyarea.connect("area_entered", _on_body_area_entered)
+	bodyarea.connect("area_exited", _on_body_area_exited)
+	
 
 ##########################
 #### appearance ##########
@@ -156,22 +167,21 @@ func remove_exception(gravity_body):
 	exception_bodies.erase(gravity_body)
 	print('removing exception body')
 #
-#func begin_flyby(parent_body):
+func begin_flyby(parent_body):
 	#"""excludes a nearby massive GravityBody when close"""
-	#self.linear_damp = flyby_damping
-	#add_exception(parent_body)
+	self.linear_damp += parent_body.flyby_damping
+	add_exception(parent_body)
 	
-#func end_flyby(parent_body):
+func end_flyby(parent_body):
 	#"""resumes acceleration toward a nearby GravityBody"""
-	#self.linear_damp = space_damping
-	#remove_exception(parent_body)
+	self.linear_damp -= parent_body.flyby_damping
+	remove_exception(parent_body)
+	
+func _on_body_area_entered(area: Area2D) -> void:
+	if area in get_tree().get_nodes_in_group('drag_areas') and self.can_flyby:
+		begin_flyby(area.get_parent())
 
-func _on_area_2d_body_entered(body: Node) -> void:
-	print(str(self) + " body entered " + str(body))
-	if body.is_massive and self.can_flyby:
-		pass
 
-func _on_area_2d_body_exited(body: Node) -> void:
-	print(str(self) + " body exited " + str(body))
-	if body.is_massive and self.can_flyby:
-		pass
+func _on_body_area_exited(area: Area2D) -> void:
+	if area in get_tree().get_nodes_in_group('drag_areas') and self.can_flyby:
+		end_flyby(area.get_parent())

@@ -19,7 +19,7 @@ point_count = 4
 radius = 51.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkqff"]
-radius = 8.24621
+radius = 51.0392
 
 [node name="GravityBody" type="RigidBody2D"]
 disable_mode = 2
@@ -83,9 +83,11 @@ layout_mode = 0
 [node name="Shape" type="CollisionShape2D" parent="DragArea"]
 shape = SubResource("CircleShape2D_pyar0")
 
-[node name="BodyShape" type="CollisionShape2D" parent="."]
+[node name="BodyArea" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="BodyArea"]
 shape = SubResource("CircleShape2D_tkqff")
 debug_color = Color(0.470588, 0.215686, 0.113725, 0.419608)
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="area_entered" from="BodyArea" to="." method="_on_body_area_area_entered"]
+[connection signal="area_exited" from="BodyArea" to="." method="_on_body_area_area_exited"]

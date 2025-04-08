@@ -13,9 +13,11 @@ size_scale = 0.2
 label = "ship"
 velocity_start = Vector2(10, 10)
 is_reactive = true
+can_flyby = true
 
 [node name="Sprite2D" parent="." index="0"]
 modulate = Color(1, 1, 1, 1)
+rotation = -1.5708
 texture = SubResource("CanvasTexture_byvxo")
 
 [node name="ExhaustSprite2D" type="Sprite2D" parent="Sprite2D" index="2"]
