@@ -4,7 +4,7 @@ extends RigidBody2D
 @onready var G = 4*PI*PI *10000
 
 #drag to impose on entering flyby bodies
-var flyby_damping = 1
+@export var flyby_damping = 5.
 #var space_damping = 0.0
 
 #minimum flyby velocity that doesn't kill. orbital velocity at radius,
@@ -145,12 +145,15 @@ func hide_guide():
 ######################
 
 func accelerate(dV:Vector2):
-	""" add a vector speed """
-	linear_velocity = linear_velocity +  dV
+	""" add a vector to velocity """
+	self.linear_velocity = self.linear_velocity + dV
+	#self.apply_impulse(dV*self.mass)
 
 func throttle(dV:float):
 	""" add speed in direction of movement """
-	linear_velocity = (dV + linear_velocity.length()) * linear_velocity.normalized()
+	var velocity_direction = linear_velocity.normalized()
+	if velocity_direction != Vector2.ZERO:
+		linear_velocity = (dV + linear_velocity.length()) * velocity_direction
 
 	
 
@@ -165,11 +168,11 @@ func throttle(dV:float):
 
 func add_exception(gravity_body):
 	exception_bodies.append(gravity_body)
-	print('adding exception body')
+	print(str(self) + ' adding exception body ' + str(gravity_body))
 	
 func remove_exception(gravity_body):
 	exception_bodies.erase(gravity_body)
-	print('removing exception body')
+	print(str(self) + ' removing exception body ' + str(gravity_body))
 #
 func begin_flyby(parent_body):
 	#"""excludes a nearby massive GravityBody when close"""
@@ -178,13 +181,12 @@ func begin_flyby(parent_body):
 	
 func end_flyby(parent_body):
 	#"""resumes acceleration toward a nearby GravityBody"""
-	self.linear_damp -= parent_body.flyby_damping
+	self.linear_damp = 0#parent_body.flyby_damping
 	remove_exception(parent_body)
 	
 func _on_body_area_entered(area: Area2D) -> void:
 	if area in get_tree().get_nodes_in_group('drag_areas') and self.can_flyby:
 		begin_flyby(area.get_parent())
-
 
 func _on_body_area_exited(area: Area2D) -> void:
 	if area in get_tree().get_nodes_in_group('drag_areas') and self.can_flyby:

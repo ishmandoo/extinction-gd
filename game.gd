@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	
 func process_input():
 	if Input.is_action_just_pressed("edit_velocities"):
-		infopanel.modulate = Color(1,1,1,0.5)
+		infopanel.modulate = Color(1,1,1,0.2)
 		pause_menu.show()
 		self.set_spotlight(1, 0.1)
 		show_labels()

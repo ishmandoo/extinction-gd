@@ -18,18 +18,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	accelerate_reactive_bodies(delta)
 	var ship = get_tree().get_first_node_in_group('ships')
-	var massive_bodies = get_tree().get_nodes_in_group("massive_bodies")
-	var orbits = []
-	var orbit
-	for massive_body in massive_bodies:
-		orbit = draw_orbit(ship, massive_body)
-		orbits.append(
-			orbit
-		)
-	var timer = get_tree().create_timer(0.1) #time to show orbits
-	await timer.timeout
-	for orb in orbits:
-		orb.queue_free()
+	draw_orbits(ship)
 
 #does Gravity need to track these?
 func get_group_bodies():
@@ -51,12 +40,13 @@ func potential(x, y):
 
 
 func acceleration_single(x, y, massive_body):
+	""" calculate the acceleration at x, y due to massive_body"""
 	var accel_direction = - (Vector2(x,y) - massive_body.position).normalized()
 	var a = G * accel_direction * massive_body.mass / massive_body.position.distance_squared_to(Vector2(x,y))
 	return a
 	
 func acceleration(x, y, exceptions = []):
-	""" calculate the acceleration at x, y due to all massive_bodies """
+	""" calculate the acceleration at x, y due to all massive_bodies sans exceptions"""
 	var A = Vector2(0,0)
 	for massive_body in massive_bodies:
 		if massive_body not in exceptions:
@@ -71,6 +61,7 @@ func accelerate_reactive_bodies(delta):
 		var x = reactive_body.position.x
 		var y = reactive_body.position.y
 		reactive_body.accelerate(delta * acceleration(x, y, reactive_body.exception_bodies))
+		#reactive_body.apply_force(reactive_body.mass * acceleration(x, y, reactive_body.exception_bodies))
 
 func circular_orbit_velocity(reactive_body, massive_body, clockwise = false):
 	"""Get the velocity of reactive_body to that of a circular orbit around the host massive_body"""
@@ -115,18 +106,32 @@ func draw_orbit(reactive_body, massive_body, color = Color(1,1,1,1)):
 		#print("Showing orbit between " + str(reactive_body) + " and " + str(massive_body))
 	return body1_orbit	
 
-func draw_orbits(ship, update_time = 2):
-	var timer = get_tree().create_timer(update_time)
+func draw_orbits(ship):
 	var massive_bodies = get_tree().get_nodes_in_group("massive_bodies")
 	var orbits = []
 	var orbit
 	for massive_body in massive_bodies:
-		orbit = draw_orbit(ship, massive_body, Color(.6,.8,1,0.4))
+		orbit = draw_orbit(ship, massive_body)
 		orbits.append(
 			orbit
 		)
+	var timer = get_tree().create_timer(0.05) #time to show orbits
 	await timer.timeout
-	draw_orbits(ship, update_time)
+	for orb in orbits:
+		orb.queue_free()
+
+#func draw_orbits(ship, update_time = 2):
+	#var timer = get_tree().create_timer(update_time)
+	#var massive_bodies = get_tree().get_nodes_in_group("massive_bodies")
+	#var orbits = []
+	#var orbit
+	#for massive_body in massive_bodies:
+		#orbit = draw_orbit(ship, massive_body, Color(.6,.8,1,0.4))
+		#orbits.append(
+			#orbit
+		#)
+	#await timer.timeout
+	#draw_orbits(ship, update_time)
 	
 func get_cm(bodies):
 	"""center of mass of a list"""

@@ -6,6 +6,7 @@ extends Node2D
 @onready var planetb = $"PlanetB"
 @onready var orbiter = $Orbiter
 @onready var star = $Star
+@onready var ship = $Ship
 
 var oreo_scene = preload("res://scenes/Bodies/oreo/oreoGB.tscn")
 
@@ -16,8 +17,11 @@ func _ready() -> void:
 	gravity.circularize_orbit(planet1, star)
 	gravity.circularize_orbit(planetb, star)
 	gravity.circularize_orbit(orbiter, star)
+	gravity.circularize_orbit(ship, star)
 	gravity.get_group_bodies()
 	gravity.place_center_of_mass(gravity.gravity_bodies, Vector2(window_size/2), Vector2())
+	
+	star.linear_velocity = Vector2.ZERO
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

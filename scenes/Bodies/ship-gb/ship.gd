@@ -4,8 +4,7 @@ var engine_accel = 100 #?/sec
 
 
 enum Control_Mode {FREE, LOCKED}
-@export var control_mode: Control_Mode = Control_Mode.FREE
-
+@export var control_mode: Control_Mode = Control_Mode.LOCKED
 
 @onready var exhaust_sprite = $Sprite2D/ExhaustSprite2D
 
@@ -115,7 +114,13 @@ func fire_engine(dt, reverse = false):
 		dv = -dv
 	self.accelerate(dv)
 
-func face_forward():
+func face_forward(rotation_rate = 5):
 	var current_velocity = self.linear_velocity
-	if current_velocity.length() > .001:
-		self.rotation = current_velocity.angle()
+	#only does anything if it's actually moving
+	if current_velocity.length() > .01:
+		#const rotation_offset = -PI/2
+		var target_angle = current_velocity.angle()# + rotation_offset
+		#sprite2D.rotation = new_angle
+		#dragarea.rotation = new_angle
+		#bodyarea.rotation = new_angle
+		self.angular_velocity = rotation_rate*(target_angle - self.rotation)
