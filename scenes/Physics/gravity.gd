@@ -10,6 +10,9 @@ const G = 4*PI*PI *10000  #units au, year, Msun
 @onready var massive_bodies = []
 @onready var reactive_bodies = []
 
+# drawn orbits
+var orbit_scene = preload("res://scenes/Physics/orbit.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_group_bodies() #needs to be redone if any bodies leave or enter the scene. Should this just be done in accelerate_reactive_bodies?
@@ -17,10 +20,12 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	accelerate_reactive_bodies(delta)
+	
+	#pick the ship and draw its orbits around all massive_bodys
 	var ship = get_tree().get_first_node_in_group('ships')
 	draw_orbits(ship)
 
-#does Gravity need to track these?
+#track bodies to influence
 func get_group_bodies():
 	gravity_bodies = get_tree().get_nodes_in_group("gravity_bodies")
 	massive_bodies = get_tree().get_nodes_in_group("massive_bodies")
@@ -38,22 +43,33 @@ func potential(x, y):
 		V = V + potential_single(x,y,massive_body)
 	return potential
 
-
 func acceleration_single(x, y, massive_body):
 	""" calculate the acceleration at x, y due to massive_body"""
 	var accel_direction = - (Vector2(x,y) - massive_body.position).normalized()
 	var a = G * accel_direction * massive_body.mass / massive_body.position.distance_squared_to(Vector2(x,y))
 	return a
 	
-func acceleration(x, y, exceptions = []):
-	""" calculate the acceleration at x, y due to all massive_bodies sans exceptions"""
+func acceleration(x, y, exceptions = [], as_dictionary = false):
+	""" calculate the acceleration at x, y due to all massive_bodies sans exceptions
+	
+	Change this later to give an option as a dictionary without all the As added together
+	"""
 	var A = Vector2(0,0)
 	for massive_body in massive_bodies:
 		if massive_body not in exceptions:
 			A = A + acceleration_single(x,y, massive_body)
 			#print("accel direction " + str(accel_direction))
 	return A
-	
+
+func gets_influential_massive_body(x, y):
+	var max_influence = 0
+	var influential_body
+	for massive_body in get_tree().get_nodes_in_group("massive_bodies"):
+		#check if the influence is the greatest seen so far
+		#note the influence and body if so.
+		pass
+	return influential_body
+
 func accelerate_reactive_bodies(delta):
 	""" for each reactive body, go thru all massive bodies to get local acceleration and change velocity """
 	get_group_bodies()
@@ -81,8 +97,8 @@ func get_orbit(reactive_body, massive_body, timestep = 0.1, max_time_ahead = 5) 
 	assuming the massive_body is not moving and no other massive_bodys"""
 	var v = reactive_body.linear_velocity
 	var x = reactive_body.position
-	var trajectory = Line2D.new()
-	trajectory.add_point(x)
+	var orbit = orbit_scene.instantiate()
+	orbit.add_point(x)
 	#var no_timesteps = max_time_ahead / timestep
 	var time = 0
 	while time < max_time_ahead:
@@ -90,35 +106,38 @@ func get_orbit(reactive_body, massive_body, timestep = 0.1, max_time_ahead = 5) 
 		var a = acceleration_single(x.x, x.y, massive_body)
 		x = x + v*timestep + (1./2)*a*timestep**2 #make this better if needed
 		v = v + a*timestep
-		trajectory.add_point(x)
-	return trajectory
+		orbit.add_point(x)
+	return orbit
 
 func draw_orbit(reactive_body, massive_body, color = Color(1,1,1,1)):
-	#print("Drawing orbits for " + str(reactive_body))
+	"""Creates a Line2D with a trajectory only influenced by the given massive_body, adds it as a
+	child and shows it """
 	var body1_orbit
 	if reactive_body and massive_body:
 		body1_orbit = get_orbit(reactive_body, massive_body)
 		self.add_child(body1_orbit)
-		body1_orbit.default_color = color
-		body1_orbit.closed = false
-		body1_orbit.width = 1
 		body1_orbit.show()
 		#print("Showing orbit between " + str(reactive_body) + " and " + str(massive_body))
 	return body1_orbit	
 
-func draw_orbits(ship):
+func draw_orbits(ship, threshold = 0.1):
+	"""
+	For every massive body, creates and draws the ships orbit with a brightness
+	proportional to the body's current influence. Bodies with less than the 
+	threshold fraction influence do not draw orbits
+	"""
 	var massive_bodies = get_tree().get_nodes_in_group("massive_bodies")
 	var orbits = []
 	var orbit
+	#get the stats on each massive body for relative brightness.
+	#more influential bodies have more visible orbits
+	var max_influence = 0
+	
 	for massive_body in massive_bodies:
 		orbit = draw_orbit(ship, massive_body)
 		orbits.append(
 			orbit
 		)
-	var timer = get_tree().create_timer(0.05) #time to show orbits
-	await timer.timeout
-	for orb in orbits:
-		orb.queue_free()
 
 #func draw_orbits(ship, update_time = 2):
 	#var timer = get_tree().create_timer(update_time)

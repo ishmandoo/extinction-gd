@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx2umo33ot6ww"]
+
+[ext_resource type="Script" path="res://scenes/Physics/orbit.gd" id="1_oexbk"]
+
+[node name="Orbit" type="Line2D"]
+points = PackedVector2Array(1018, 97)
+width = 0.5
+default_color = Color(1, 1, 1, 0.14902)
+script = ExtResource("1_oexbk")

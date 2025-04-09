@@ -81,6 +81,8 @@ rails controls:
 asteroids controls:
 	wasd
 
-- setting rotation / linear_velocity directly interferes with physics engine, but I'd like to apply accelerations  and dVs instead of forces.
-
 Exiting dampening field gives it a kick for some reason."
+
+[node name="Button" type="Button" parent="InfoPanel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 60)
+layout_mode = 2

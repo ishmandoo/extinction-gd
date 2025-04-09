@@ -61,7 +61,6 @@ position = Vector2(306, 284)
 rotation = -1.0057
 collision_layer = 1
 collision_mask = 1
-linear_damp_mode = 0
 flyby_damping = 20.0
 velocity_start = Vector2(30, 30)
 
