@@ -7,6 +7,10 @@ extends RigidBody2D
 var flyby_damping = 1
 #var space_damping = 0.0
 
+#minimum flyby velocity that doesn't kill. orbital velocity at radius,
+#needs to ask Gravity for G and circularize_orbit_velocity function
+var death_speed = 0
+
 #sprite
 @export var size_scale:float
 @onready var sprite2D = $"Sprite2D"

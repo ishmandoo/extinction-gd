@@ -9,6 +9,7 @@ diffuse_texture = ExtResource("3_07q6a")
 
 [node name="Ship" instance=ExtResource("1_l7qt5")]
 script = ExtResource("2_fy0np")
+control_mode = 0
 size_scale = 0.2
 label = "ship"
 velocity_start = Vector2(10, 10)

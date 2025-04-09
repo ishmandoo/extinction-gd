@@ -72,13 +72,18 @@ func accelerate_reactive_bodies(delta):
 		var y = reactive_body.position.y
 		reactive_body.accelerate(delta * acceleration(x, y, reactive_body.exception_bodies))
 
-func circularize_orbit(reactive_body, massive_body, clockwise = false):
-	"""Change the velocity of reactive_body to that of a circular orbit around the host massive_body"""
+func circular_orbit_velocity(reactive_body, massive_body, clockwise = false):
+	"""Get the velocity of reactive_body to that of a circular orbit around the host massive_body"""
 	var linear_speed = sqrt(G * massive_body.mass / reactive_body.position.distance_to(massive_body.position))
 	var velocity_direction = reactive_body.position.direction_to(massive_body.position).rotated(PI/2)
 	if clockwise:
 		velocity_direction = -velocity_direction
-	reactive_body.linear_velocity = linear_speed * velocity_direction
+	return linear_speed * velocity_direction
+
+func circularize_orbit(reactive_body, massive_body, clockwise = false):
+	"""Change the velocity of reactive_body to that of a circular orbit around the host massive_body"""
+	var linear_speed = circular_orbit_velocity(reactive_body, massive_body, clockwise)
+	reactive_body.linear_velocity = linear_speed
 
 func get_orbit(reactive_body, massive_body, timestep = 0.1, max_time_ahead = 5) -> Line2D:
 	"""Create a Line2D approximating the future path of the reactive_body around the massive_body,
@@ -98,7 +103,7 @@ func get_orbit(reactive_body, massive_body, timestep = 0.1, max_time_ahead = 5) 
 	return trajectory
 
 func draw_orbit(reactive_body, massive_body, color = Color(1,1,1,1)):
-	print("Drawing orbits for " + str(reactive_body))
+	#print("Drawing orbits for " + str(reactive_body))
 	var body1_orbit
 	if reactive_body and massive_body:
 		body1_orbit = get_orbit(reactive_body, massive_body)

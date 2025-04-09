@@ -45,6 +45,7 @@ mass = 0.5
 size_scale = 0.3
 label = "Planet B"
 velocity_start = Vector2(0, 25)
+is_massive = true
 is_reactive = true
 
 [node name="Orbiter" parent="." instance=ExtResource("4_d74ye")]
