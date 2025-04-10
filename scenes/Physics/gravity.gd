@@ -104,9 +104,11 @@ func get_orbit(reactive_body, massive_body, timestep = 0.1, max_time_ahead = 5) 
 	orbit.add_point(x)
 	#var no_timesteps = max_time_ahead / timestep
 	var time = 0
+	var a = acceleration_single(x.x, x.y, massive_body)
+	orbit.current_acceleration = a.length()
 	while time < max_time_ahead:
 		time += timestep
-		var a = acceleration_single(x.x, x.y, massive_body)
+		a = acceleration_single(x.x, x.y, massive_body)
 		x = x + v*timestep + (1./2)*a*timestep**2 #make this better if needed
 		v = v + a*timestep
 		orbit.add_point(x)
@@ -131,16 +133,23 @@ func draw_orbits(ship, threshold = 0.1):
 	"""
 	var massive_bodies = get_tree().get_nodes_in_group("massive_bodies")
 	var orbits = []
-	var orbit
 	#get the stats on each massive body for relative brightness.
 	#more influential bodies have more visible  orbits
-	var max_influence = 0
-	
+	var max_acceleration = 0.
+	#draw an orbit for each body
 	for massive_body in massive_bodies:
-		orbit = draw_orbit(ship, massive_body)
+		var orbit = draw_orbit(ship, massive_body)
 		orbits.append(
 			orbit
 		)
+		if orbit.current_acceleration > max_acceleration:
+			max_acceleration = orbit.current_acceleration
+	#color the orbits based on accel strength
+	for orbit in orbits:
+		var brightness = (orbit.current_acceleration / max_acceleration)
+		orbit.default_color = brightness*orbit.default_color
+		if brightness < threshold:
+			orbit.queue_free()
 
 #func draw_orbits(ship, update_time = 2):
 	#var timer = get_tree().create_timer(update_time)

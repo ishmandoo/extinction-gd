@@ -169,11 +169,11 @@ func throttle(dV:float):
 
 func add_exception(gravity_body):
 	exception_bodies.append(gravity_body)
-	print(str(self) + ' adding exception body ' + str(gravity_body))
+	#print(str(self) + ' adding exception body ' + str(gravity_body))
 	
 func remove_exception(gravity_body):
 	exception_bodies.erase(gravity_body)
-	print(str(self) + ' removing exception body ' + str(gravity_body))
+	#print(str(self) + ' removing exception body ' + str(gravity_body))
 #
 func begin_flyby(parent_body):
 	#"""excludes a nearby massive GravityBody when close"""

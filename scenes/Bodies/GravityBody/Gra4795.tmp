@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bp78kjt5agwkh"]
+[gd_scene load_steps=9 format=3 uid="uid://bp78kjt5agwkh"]
 
 [ext_resource type="Script" path="res://scenes/Bodies/GravityBody/gravity_body.gd" id="1_hceuo"]
 [ext_resource type="Texture2D" uid="uid://dosvhm8w1ue02" path="res://art/planet-128/planet-128.png" id="2_pqafi"]
@@ -9,17 +9,22 @@
 diffuse_texture = ExtResource("2_pqafi")
 normal_texture = ExtResource("3_xf3lr")
 
+[sub_resource type="Curve2D" id="Curve2D_fr5ui"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -80.9844, -15, 0, 0, 0, 0, 114.063, 72, 0, 0, 0, 0, 376.406, -32, 0, 0, 0, 0, 199.609, -151)
+}
+point_count = 4
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_pyar0"]
-radius = 33.0151
+radius = 51.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkqff"]
 radius = 51.0098
 
-[node name="GravityBody" type="RigidBody2D"]
+[node name="GravityBody" type="CharacterBody2D"]
 disable_mode = 2
 collision_layer = 0
 collision_mask = 0
-gravity_scale = 0.0
 script = ExtResource("1_hceuo")
 flyby_damping = 1.0
 size_scale = 1.0
@@ -36,6 +41,15 @@ occluder_light_mask = 7
 
 [node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
 texture = ExtResource("4_h6g6y")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(467, 363)
+scale = Vector2(0.876712, 1)
+curve = SubResource("Curve2D_fr5ui")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-80.9844, -15)
+rotation = 0.41956
 
 [node name="Guide" type="Control" parent="."]
 layout_mode = 3

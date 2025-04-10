@@ -79,9 +79,7 @@ tab to toggle controls
 rails controls:
 	w/s to change speed
 asteroids controls:
-	wasd
-
-Exiting dampening field gives it a kick for some reason."
+	wasd"
 
 [node name="Button" type="Button" parent="InfoPanel/VBoxContainer"]
 custom_minimum_size = Vector2(50, 60)

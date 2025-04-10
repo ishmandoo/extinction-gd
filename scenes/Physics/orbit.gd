@@ -3,6 +3,7 @@ extends Line2D
 @export var decay_time = 0.2 #sec
 
 var death_threshold = 0.05 #how bright it drops to before being removed
+var current_acceleration = 1. #acceleration at the start. Used to color the orbit based on force strength
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

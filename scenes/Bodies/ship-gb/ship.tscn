@@ -11,7 +11,6 @@ diffuse_texture = ExtResource("3_07q6a")
 linear_damp_mode = 0
 script = ExtResource("2_fy0np")
 control_mode = 1
-flyby_damping = 1.0
 size_scale = 0.2
 label = "ship"
 velocity_start = Vector2(10, 10)

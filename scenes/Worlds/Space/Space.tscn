@@ -50,9 +50,11 @@ is_reactive = true
 
 [node name="Orbiter" parent="." instance=ExtResource("4_d74ye")]
 position = Vector2(360, 444)
+mass = 0.05
 size_scale = 0.2
 label = "Orbiter"
 velocity_start = Vector2(0, -25)
+is_massive = true
 is_reactive = true
 
 [node name="Ship" parent="." instance=ExtResource("5_0i6pa")]
@@ -67,6 +69,6 @@ velocity_start = Vector2(30, 30)
 [node name="Star" parent="." instance=ExtResource("4_d74ye")]
 position = Vector2(531, 252)
 mass = 3.0
-flyby_damping = 8.0
+flyby_damping = 20.0
 label = "Star"
 is_massive = true
