@@ -61,12 +61,12 @@ position = Vector2(306, 284)
 rotation = -1.0057
 collision_layer = 1
 collision_mask = 1
-flyby_damping = 20.0
+linear_damp_mode = 1
 velocity_start = Vector2(30, 30)
 
 [node name="Star" parent="." instance=ExtResource("4_d74ye")]
 position = Vector2(531, 252)
 mass = 3.0
-flyby_damping = 20.0
+flyby_damping = 8.0
 label = "Star"
 is_massive = true

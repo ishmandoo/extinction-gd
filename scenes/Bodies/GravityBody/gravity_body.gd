@@ -84,7 +84,11 @@ func _process(_delta: float) -> void:
 ###############
 #### Setup ####
 ###############
-
+		
+func make_connections():
+	bodyarea.connect("area_entered", _on_body_area_entered)
+	bodyarea.connect("area_exited", _on_body_area_exited)
+	
 func set_label():
 	#set the label text
 	$Guide/LabelPanel/Label.text = label #testing label
@@ -114,10 +118,7 @@ func scale_sprite_and_colliders(scale_xy:Vector2, time = 0):
 		scaler.tween_property(sprite2D, "scale", scale_xy, time)
 		scaler.tween_property(bodyarea, "scale", scale_xy, time)
 		scaler.tween_property(dragarea, "scale", scale_xy, time)
-		
-func make_connections():
-	bodyarea.connect("area_entered", _on_body_area_entered)
-	bodyarea.connect("area_exited", _on_body_area_exited)
+
 	
 
 ##########################

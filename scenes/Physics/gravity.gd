@@ -54,20 +54,23 @@ func acceleration(x, y, exceptions = [], as_dictionary = false):
 	
 	Change this later to give an option as a dictionary without all the As added together
 	"""
-	var A = Vector2(0,0)
+	var A = Dictionary()
 	for massive_body in massive_bodies:
 		if massive_body not in exceptions:
-			A = A + acceleration_single(x,y, massive_body)
+			A.merge({massive_body:acceleration_single(x,y, massive_body)})
 			#print("accel direction " + str(accel_direction))
-	return A
+	if as_dictionary:
+		return A
+	else:
+		var net = Vector2.ZERO
+		for value in A.values():
+			net += value
+		return net
 
-func gets_influential_massive_body(x, y):
+func get_influential_massive_body(x, y):
 	var max_influence = 0
 	var influential_body
-	for massive_body in get_tree().get_nodes_in_group("massive_bodies"):
-		#check if the influence is the greatest seen so far
-		#note the influence and body if so.
-		pass
+	var accels = acceleration(x,y,[],true)
 	return influential_body
 
 func accelerate_reactive_bodies(delta):
@@ -130,7 +133,7 @@ func draw_orbits(ship, threshold = 0.1):
 	var orbits = []
 	var orbit
 	#get the stats on each massive body for relative brightness.
-	#more influential bodies have more visible orbits
+	#more influential bodies have more visible  orbits
 	var max_influence = 0
 	
 	for massive_body in massive_bodies:
