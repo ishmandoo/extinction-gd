@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cf6epbdtefid0"]
+
+[ext_resource type="Script" path="res://scenes/Worlds/Space/space_2.gd" id="1_y42cj"]
+[ext_resource type="Texture2D" uid="uid://d3gs2xntofytm" path="res://scenes/Worlds/Space/westerlund.jpg" id="2_3tjj0"]
+[ext_resource type="PackedScene" uid="uid://gyfnl3vhuqxw" path="res://scenes/Physics/Gravity.tscn" id="3_bn6oo"]
+[ext_resource type="PackedScene" uid="uid://bnt0pvs63b6c0" path="res://scenes/Bodies/ship-gb/ship.tscn" id="4_abbuw"]
+[ext_resource type="PackedScene" uid="uid://bp78kjt5agwkh" path="res://scenes/Bodies/GravityBody/GravityBody.tscn" id="5_j3lts"]
+
+[node name="Space" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_y42cj")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+modulate = Color(1, 1, 1, 0.176471)
+position = Vector2(586, 305)
+texture = ExtResource("2_3tjj0")
+
+[node name="Gravity" parent="." instance=ExtResource("3_bn6oo")]
+
+[node name="CanvasModulate(for darkness)" type="CanvasModulate" parent="."]
+light_mask = 2
+visibility_layer = 2
+color = Color(0.372549, 0.352941, 0.368627, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.6
+height = 0.5
+
+[node name="Ship" parent="." instance=ExtResource("4_abbuw")]
+position = Vector2(481, 394)
+velocity_start = Vector2(50, 10)
+
+[node name="Star" parent="." instance=ExtResource("5_j3lts")]
+position = Vector2(482, 262)
+mass = 3.0
+flyby_damping = 5.0
+is_massive = true

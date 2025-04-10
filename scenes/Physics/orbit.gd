@@ -1,5 +1,7 @@
 extends Line2D
 
+#how long it takes to completely decay appearance. With a positive death threshold, this
+#is longer than the actual lifetime
 @export var decay_time = 0.2 #sec
 
 var death_threshold = 0.05 #how bright it drops to before being removed

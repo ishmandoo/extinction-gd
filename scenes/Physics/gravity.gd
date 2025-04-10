@@ -79,7 +79,7 @@ func accelerate_reactive_bodies(delta):
 	for reactive_body in reactive_bodies:
 		var x = reactive_body.position.x
 		var y = reactive_body.position.y
-		reactive_body.accelerate(delta * acceleration(x, y, reactive_body.exception_bodies))
+		reactive_body.accelerate(delta * self.acceleration(x, y, reactive_body.exception_bodies))
 		#reactive_body.apply_force(reactive_body.mass * acceleration(x, y, reactive_body.exception_bodies))
 
 func circular_orbit_velocity(reactive_body, massive_body, clockwise = false):
@@ -125,10 +125,37 @@ func draw_orbit(reactive_body, massive_body, color = Color(1,1,1,1)):
 		#print("Showing orbit between " + str(reactive_body) + " and " + str(massive_body))
 	return body1_orbit	
 
+#func get_intersecting_areas(point, exclusions):
+	#var space_state = area.get_world_2d().direct_space_state
+	#var point_parameters =  PhysicsPointQueryParameters2D.new()
+	#point_parameters.position = point
+	#point_parameters.collide_with_areas = true
+	#point_parameters.exclude = exclusions
+	#var intersecting_areas = space_state.intersect_point(point_parameters, 32) 
+	#return intersecting_areas
+#
+#func is_point_inside_area(point: Vector2, area: Area2D, exclusions = []) -> bool:
+	#pass
+
+	
+
+func color_orbit_intersections(orbit):
+	var intersects_dragarea = false #not used yet
+	var intersects_bodyarea = false #not used yet
+	var no_points = orbit.get_point_count()
+	for massive_body in massive_bodies:
+		for pointi in range(no_points):
+			var point = orbit.get_point_position(pointi)
+			#if is_point_inside_area(point, massive_body.dragarea):
+				#orbit.default_color = Color.YELLOW
+			#if is_point_inside_area(point, massive_body.bodyarea):
+				#orbit.default_color = Color.RED
+				
+
 func draw_orbits(ship, threshold = 0.1):
 	"""
-	For every massive body, creates and draws the ships orbit with a brightness
-	proportional to the body's current influence. Bodies with less than the 
+	For every massive body, creates and draws the ships orbit with a brightness 
+	dependent on body's current relative influence. Bodies with less than the 
 	threshold fraction influence do not draw orbits
 	"""
 	var massive_bodies = get_tree().get_nodes_in_group("massive_bodies")
@@ -144,8 +171,10 @@ func draw_orbits(ship, threshold = 0.1):
 		)
 		if orbit.current_acceleration > max_acceleration:
 			max_acceleration = orbit.current_acceleration
-	#color the orbits based on accel strength
+			
+	#color the orbits based on accel strength and intersections
 	for orbit in orbits:
+		color_orbit_intersections(orbit)
 		var brightness = (orbit.current_acceleration / max_acceleration)
 		orbit.default_color = brightness*orbit.default_color
 		if brightness < threshold:

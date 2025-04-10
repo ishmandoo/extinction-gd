@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvob2bu718sov"]
+[gd_scene load_steps=5 format=3 uid="uid://dnpj8ipopcum8"]
 
-[ext_resource type="Script" path="res://scenes/game.gd" id="1_mp3y6"]
-[ext_resource type="PackedScene" uid="uid://4kskkx5gm7sc" path="res://scenes/Worlds/Space/Space.tscn" id="2_o3mi6"]
-[ext_resource type="PackedScene" uid="uid://bpfytk2e4pekm" path="res://scenes/Light/Spotlight.tscn" id="3_f3wt3"]
-[ext_resource type="Texture2D" uid="uid://bsvl47uw7xci6" path="res://scenes/Light/glow-circle-922.png" id="4_dh8ne"]
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_wsxqv"]
+[ext_resource type="PackedScene" uid="uid://cf6epbdtefid0" path="res://scenes/Worlds/Space/Space2.tscn" id="2_i6oat"]
+[ext_resource type="PackedScene" uid="uid://bpfytk2e4pekm" path="res://scenes/Light/Spotlight.tscn" id="3_1je2c"]
+[ext_resource type="Texture2D" uid="uid://bsvl47uw7xci6" path="res://scenes/Light/glow-circle-922.png" id="4_3j26w"]
 
 [node name="Game" type="Control"]
 process_mode = 3
@@ -13,14 +13,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mp3y6")
+script = ExtResource("1_wsxqv")
 
-[node name="Space" parent="." instance=ExtResource("2_o3mi6")]
+[node name="Space2" parent="." instance=ExtResource("2_i6oat")]
 
-[node name="Spotlight" parent="." instance=ExtResource("3_f3wt3")]
+[node name="Spotlight" parent="." instance=ExtResource("3_1je2c")]
 position = Vector2(763, 291)
 energy = 0.5
-texture = ExtResource("4_dh8ne")
+texture = ExtResource("4_3j26w")
 height = 120.0
 
 [node name="PauseMenu" type="Panel" parent="."]

@@ -32,7 +32,7 @@ height = 0.5
 
 [node name="Planet1" parent="." instance=ExtResource("4_d74ye")]
 position = Vector2(362, 252)
-mass = 0.2
+mass = 2.0
 size_scale = 0.5
 label = "Planet 1"
 velocity_start = Vector2(0, 10)
@@ -41,7 +41,6 @@ is_reactive = true
 
 [node name="PlanetB" parent="." instance=ExtResource("4_d74ye")]
 position = Vector2(770, 251)
-mass = 0.5
 size_scale = 0.3
 label = "Planet B"
 velocity_start = Vector2(0, 25)
@@ -49,7 +48,7 @@ is_massive = true
 is_reactive = true
 
 [node name="Orbiter" parent="." instance=ExtResource("4_d74ye")]
-position = Vector2(360, 444)
+position = Vector2(487, 420)
 mass = 0.05
 size_scale = 0.2
 label = "Orbiter"
@@ -59,7 +58,7 @@ is_reactive = true
 
 [node name="Ship" parent="." instance=ExtResource("5_0i6pa")]
 top_level = true
-position = Vector2(260, 268)
+position = Vector2(608, 345)
 rotation = -1.0057
 collision_layer = 1
 collision_mask = 1
@@ -67,8 +66,9 @@ linear_damp_mode = 1
 velocity_start = Vector2(30, 30)
 
 [node name="Star" parent="." instance=ExtResource("4_d74ye")]
-position = Vector2(531, 252)
+position = Vector2(476, 293)
 mass = 3.0
-flyby_damping = 5.0
+flyby_damping = 10.0
+size_scale = 0.5
 label = "Star"
 is_massive = true

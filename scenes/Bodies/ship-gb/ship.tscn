@@ -8,7 +8,6 @@
 diffuse_texture = ExtResource("3_07q6a")
 
 [node name="Ship" instance=ExtResource("1_l7qt5")]
-linear_damp_mode = 0
 script = ExtResource("2_fy0np")
 control_mode = 1
 size_scale = 0.2
@@ -43,11 +42,11 @@ color = Color(1, 1, 0.101961, 1)
 [node name="Label" parent="Guide/LabelPanel" index="0"]
 text = "ship"
 
-[node name="DragArea" parent="." index="3"]
+[node name="DragArea" parent="." index="2"]
 rotation = -1.5708
 
-[node name="BodyArea" parent="." index="4"]
+[node name="BodyArea" parent="." index="3"]
 rotation = -1.5708
 
-[node name="RayCast2D" type="RayCast2D" parent="." index="5"]
+[node name="RayCast2D" type="RayCast2D" parent="." index="4"]
 target_position = Vector2(5, 0)

@@ -145,10 +145,12 @@ func hide_guide():
 #### acceleration ####
 ######################
 
-func accelerate(dV:Vector2):
+func accelerate(dV:Vector2): #this has to change to make sure it's not screwing up the physics engine.
+	#bad things happen when you set the linear_velocity manually --- use apply_impulse or similar.
+	#but it seems proper for gravity to operate with accelerations rather than forces.
 	""" add a vector to velocity """
-	#self.linear_velocity = self.linear_velocity + dV
-	self.apply_impulse(dV*self.mass)
+	self.linear_velocity = self.linear_velocity + dV
+	#self.apply_impulse(dV*self.mass)
 
 func throttle(dV:float):
 	""" add speed in direction of movement """
@@ -182,13 +184,19 @@ func begin_flyby(parent_body):
 	
 func end_flyby(parent_body):
 	#"""resumes acceleration toward a nearby GravityBody"""
-	self.linear_damp = 0#parent_body.flyby_damping
 	remove_exception(parent_body)
-	
+
+func update_drag(value:float):
+	self.linear_damp += value
+
 func _on_body_area_entered(area: Area2D) -> void:
-	if area in get_tree().get_nodes_in_group('drag_areas') and self.can_flyby:
+	if area in get_tree().get_nodes_in_group('body_areas') and self.can_flyby:
 		begin_flyby(area.get_parent())
+	elif area in get_tree().get_nodes_in_group('drag_areas'):
+		update_drag(area.get_parent().flyby_damping)
 
 func _on_body_area_exited(area: Area2D) -> void:
-	if area in get_tree().get_nodes_in_group('drag_areas') and self.can_flyby:
+	if area in get_tree().get_nodes_in_group('body_areas') and self.can_flyby:
 		end_flyby(area.get_parent())
+	elif area in get_tree().get_nodes_in_group('drag_areas'):
+		update_drag(-area.get_parent().flyby_damping)
