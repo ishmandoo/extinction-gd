@@ -57,7 +57,7 @@ is_reactive = true
 
 [node name="Ship" parent="." instance=ExtResource("5_0i6pa")]
 top_level = true
-position = Vector2(306, 284)
+position = Vector2(260, 268)
 rotation = -1.0057
 collision_layer = 1
 collision_mask = 1
@@ -67,6 +67,5 @@ velocity_start = Vector2(30, 30)
 [node name="Star" parent="." instance=ExtResource("4_d74ye")]
 position = Vector2(531, 252)
 mass = 3.0
-flyby_damping = 8.0
 label = "Star"
 is_massive = true
