@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxd6qes45cjq8"]
+
+[ext_resource type="PackedScene" uid="uid://bp78kjt5agwkh" path="res://scenes/Bodies/GravityBody/GravityBody.tscn" id="1_f368x"]
+[ext_resource type="Script" path="res://scenes/Bodies/GravityBody/RailsBody.gd" id="2_rf3ra"]
+
+[node name="RailsBody" instance=ExtResource("1_f368x")]
+script = ExtResource("2_rf3ra")
+snap_to_rail = true
+
+[node name="Line2D" type="Line2D" parent="Guide" index="2"]
+points = PackedVector2Array(-149539, -187510)
+
+[node name="Rail" type="Line2D" parent="." index="4"]

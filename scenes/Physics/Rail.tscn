@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp3mjkjq4vuo"]
+
+[ext_resource type="Script" path="res://scenes/Physics/rail.gd" id="1_6go37"]
+[ext_resource type="PackedScene" uid="uid://bp78kjt5agwkh" path="res://scenes/Bodies/GravityBody/GravityBody.tscn" id="1_wipnh"]
+
+[node name="Rail" type="Line2D"]
+position = Vector2(274, 328)
+points = PackedVector2Array(221, -203, 152, -215, 65, -214, -95, -116, -164, 20, -146, 119, -14, 203, 260, 189, 307, 89, 318, -68, 362, -122, 335, -150)
+closed = true
+width = 4.0
+default_color = Color(0.403922, 1, 0.219608, 0.301961)
+script = ExtResource("1_6go37")
+
+[node name="GravityBody" parent="." instance=ExtResource("1_wipnh")]
+position = Vector2(299, 134)
+velocity_start = Vector2(-300, 100)
+is_reactive = true
