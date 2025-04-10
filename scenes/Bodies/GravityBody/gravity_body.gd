@@ -4,7 +4,7 @@ extends RigidBody2D
 @onready var G = 4*PI*PI *10000
 
 #drag to impose on entering flyby bodies
-@export var flyby_damping = 5.
+@export var flyby_damping = 1.
 #var space_damping = 0.0
 
 #minimum flyby velocity that doesn't kill. orbital velocity at radius,
@@ -147,8 +147,8 @@ func hide_guide():
 
 func accelerate(dV:Vector2):
 	""" add a vector to velocity """
-	self.linear_velocity = self.linear_velocity + dV
-	#self.apply_impulse(dV*self.mass)
+	#self.linear_velocity = self.linear_velocity + dV
+	self.apply_impulse(dV*self.mass)
 
 func throttle(dV:float):
 	""" add speed in direction of movement """
