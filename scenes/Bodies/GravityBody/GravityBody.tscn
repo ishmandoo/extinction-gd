@@ -13,7 +13,7 @@ normal_texture = ExtResource("3_xf3lr")
 radius = 51.0392
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkqff"]
-radius = 44.0
+radius = 51.0
 
 [node name="GravityBody" type="RigidBody2D"]
 disable_mode = 2

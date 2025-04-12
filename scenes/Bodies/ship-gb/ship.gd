@@ -1,6 +1,6 @@
 extends "res://scenes/Bodies/GravityBody/gravity_body.gd"
 
-var engine_accel = 100 #?/sec
+var engine_accel = 200 #?/sec
 
 
 enum Control_Mode {FREE, LOCKED}

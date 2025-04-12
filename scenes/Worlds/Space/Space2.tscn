@@ -37,5 +37,5 @@ velocity_start = Vector2(50, 10)
 [node name="Star" parent="." instance=ExtResource("5_j3lts")]
 position = Vector2(482, 262)
 mass = 3.0
-flyby_damping = 5.0
+flyby_damping = 0.5
 is_massive = true

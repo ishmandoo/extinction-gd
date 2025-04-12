@@ -4,7 +4,7 @@ extends RigidBody2D
 @onready var G = 4*PI*PI *10000
 
 #drag to impose on entering flyby bodies
-@export var flyby_damping = 1.
+@export var flyby_damping = 0.
 #var space_damping = 0.0
 
 #minimum flyby velocity that doesn't kill. orbital velocity at radius,
@@ -191,8 +191,10 @@ func update_drag(value:float):
 
 func _on_body_area_entered(area: Area2D) -> void:
 	if area in get_tree().get_nodes_in_group('body_areas') and self.can_flyby:
+		#print(str(self) + " entered body area " + str(area.get_parent()))
 		begin_flyby(area.get_parent())
 	elif area in get_tree().get_nodes_in_group('drag_areas'):
+		#print(str(self) + " entered drag area " + str(area.get_parent()))
 		update_drag(area.get_parent().flyby_damping)
 
 func _on_body_area_exited(area: Area2D) -> void:
