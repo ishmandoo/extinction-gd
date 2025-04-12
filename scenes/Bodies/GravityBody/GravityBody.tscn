@@ -10,10 +10,10 @@ diffuse_texture = ExtResource("2_pqafi")
 normal_texture = ExtResource("3_xf3lr")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pyar0"]
-radius = 51.0392
+radius = 61.0328
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkqff"]
-radius = 51.0
+radius = 40.05
 
 [node name="GravityBody" type="RigidBody2D"]
 disable_mode = 2

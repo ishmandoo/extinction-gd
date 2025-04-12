@@ -6,7 +6,7 @@ extends Line2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	circularize(Vector2(200,300), 200, 200)
+	pass	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

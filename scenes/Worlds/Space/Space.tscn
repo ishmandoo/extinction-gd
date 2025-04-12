@@ -62,7 +62,6 @@ position = Vector2(608, 345)
 rotation = -1.0057
 collision_layer = 1
 collision_mask = 1
-linear_damp_mode = 1
 velocity_start = Vector2(30, 30)
 
 [node name="Star" parent="." instance=ExtResource("4_d74ye")]

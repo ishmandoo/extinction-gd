@@ -4,11 +4,12 @@ extends Control
 @onready var cow_button = $VBoxContainer/HBoxContainer3/PanelContainer3/Panel/CowLevelButton
 @onready var space2_button = $VBoxContainer/HBoxContainer/PanelContainer3/Panel/Space2Button
 @onready var spacemoon_button = $VBoxContainer/HBoxContainer/PanelContainer/Panel/OneMoonButton
-
+@onready var railsexample_button = $VBoxContainer/HBoxContainer3/PanelContainer2/Panel/RailsExampleButton
 var space_level_path = "res://scenes/Game.tscn"
 var cow_level_path = "res://scenes/Worlds/cow-level/main.tscn"
 var space2_level_path = "res://scenes/Game2.tscn"
 var spacemoon_level_path = "res://scenes/GameMoon.tscn"
+var rails_level_path = "res://scenes/Worlds/Space/RailsExample.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,7 +20,11 @@ func connect_buttons():
 	cow_button.pressed.connect(self._on_cow_button_pressed)
 	space2_button.pressed.connect(self._on_space2_button_pressed)
 	spacemoon_button.pressed.connect(self._on_spacemoon_button_pressed)
-
+	railsexample_button.pressed.connect(self._on_railsexample_button_pressed)
+	
+func _on_railsexample_button_pressed():
+	switch_scene(rails_level_path)
+		
 func _on_space_button_pressed():
 	switch_scene(space_level_path)
 

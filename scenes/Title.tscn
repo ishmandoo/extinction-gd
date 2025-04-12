@@ -29,7 +29,7 @@ size_flags_vertical = 4
 [node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer3/PanelContainer2"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer3/PanelContainer2/Panel"]
+[node name="RailsExampleButton" type="Button" parent="VBoxContainer/HBoxContainer3/PanelContainer2/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -42,6 +42,7 @@ offset_right = 41.0
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
+text = "Rails example"
 
 [node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(120, 50)
