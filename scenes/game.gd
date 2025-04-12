@@ -1,6 +1,6 @@
 extends Control
 
-@onready var space = $Space
+@onready var space = $RailsExample
 @onready var pause_menu = $PauseMenu
 @onready var spotlight = $Spotlight
 @onready var infopanel = $InfoPanel

@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bnt0pvs63b6c0" path="res://scenes/Bodies/ship-gb/ship.tscn" id="5_a3wv2"]
 [ext_resource type="PackedScene" uid="uid://cp3mjkjq4vuo" path="res://scenes/Physics/Rail.tscn" id="6_xlpxo"]
 
-[node name="RailsExample" type="Node2D"]
+[node name="RailsSpace" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_k0d0y")
 
@@ -18,6 +18,7 @@ visibility_layer = 4
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 modulate = Color(1, 1, 1, 0.176471)
 position = Vector2(586, 305)
+scale = Vector2(2, 2)
 texture = ExtResource("2_yp8sk")
 
 [node name="Gravity" parent="." instance=ExtResource("3_b5oh5")]
@@ -41,9 +42,15 @@ velocity_start = Vector2(30, 30)
 
 [node name="Star" parent="." instance=ExtResource("4_536pm")]
 position = Vector2(791, 446)
+mass = 2.0
+is_massive = true
 
 [node name="Rail" parent="Star" instance=ExtResource("6_xlpxo")]
 position = Vector2(0, 0)
+max_restoring_acceleration = 20
 
 [node name="Planet" parent="Star/Rail" instance=ExtResource("4_536pm")]
-position = Vector2(524, 351)
+position = Vector2(200, 0)
+size_scale = 0.5
+is_massive = true
+is_reactive = true

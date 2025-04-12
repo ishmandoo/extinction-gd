@@ -9,7 +9,7 @@ var space_level_path = "res://scenes/Game.tscn"
 var cow_level_path = "res://scenes/Worlds/cow-level/main.tscn"
 var space2_level_path = "res://scenes/Game2.tscn"
 var spacemoon_level_path = "res://scenes/GameMoon.tscn"
-var rails_level_path = "res://scenes/Worlds/Space/RailsExample.tscn"
+var rails_level_path = "res://scenes/GameRailmoon.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/title.gd" id="1_17ert"]
 
 [node name="Title" type="Control"]
-custom_minimum_size = Vector2(960, 540)
+custom_minimum_size = Vector2(1600, 900)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_17ert")
