@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://duvu2xe14q3i8"]
+[gd_scene load_steps=12 format=3 uid="uid://duvu2xe14q3i8"]
 
 [ext_resource type="PackedScene" uid="uid://bp78kjt5agwkh" path="res://scenes/Bodies/GravityBody/GravityBody.tscn" id="1_ys25f"]
 [ext_resource type="Texture2D" uid="uid://k2ijwbn6805n" path="res://scenes/Bodies/oreo-gb/oreo-bottom.png" id="2_pcl32"]
@@ -19,7 +19,11 @@ diffuse_texture = ExtResource("4_7tsfj")
 diffuse_texture = ExtResource("6_v1n1k")
 normal_texture = ExtResource("7_vb01c")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_uwiat"]
+radius = 8.06226
+
 [node name="Oreo" instance=ExtResource("1_ys25f")]
+collision_layer = 2
 mass = 0.001
 label = ""
 is_reactive = true
@@ -48,3 +52,6 @@ texture = SubResource("CanvasTexture_6pwuo")
 
 [node name="PointLight2D" parent="Sprite2D" index="5"]
 texture = null
+
+[node name="core" type="CollisionShape2D" parent="." index="4"]
+shape = SubResource("CircleShape2D_uwiat")

@@ -1,6 +1,7 @@
 extends RigidBody2D
 
-#local gravity. Not the G Gravity uses by default
+#local gravity. Not the G Gravity uses by default.
+#may be used for magic later
 @onready var G = 4*PI*PI *10000
 
 #drag to impose on entering flyby bodies
@@ -15,12 +16,16 @@ var death_speed = 0
 @export var size_scale:float
 @onready var sprite2D = $"Sprite2D"
 
+#light
+@onready var glow = $Sprite2D/PointLight2D
+
 #collision
 @onready var bodyarea = $BodyArea
 @onready var dragarea = $DragArea
 
 #visuals for editing
 @onready var guide = $Guide
+@onready var label_tag = $Guide/LabelPanel/Label
 @export var label = ""
 
 #const au = 200 #pixels
@@ -71,7 +76,7 @@ func _ready() -> void:
 	self.set_linear_velocity(velocity_start)
 	#self.set_position(position_start)
 	hide_guide()
-	self.flash(Color(1,1,1,1), 2)
+	self.flash(2, 2)
 	print(str(self) + ": done setup!")
 
 
@@ -125,13 +130,13 @@ func scale_sprite_and_colliders(scale_xy:Vector2, time = 0):
 #### appearance ##########
 ##########################
 
-func flash(peak_color:Color, timedown = 5, timeup = 0.05):
+func flash(peak_energy:float, timedown = 5, timeup = 0.05):
 
-	var initial_color = self.modulate
+	var initial_energy = glow.energy
 	
 	var flasher = get_tree().create_tween()
-	flasher.tween_property(sprite2D, "modulate", peak_color, timeup)
-	flasher.tween_property(sprite2D, "modulate", initial_color, timedown).set_trans(Tween.TRANS_LINEAR)
+	flasher.tween_property(glow, "energy", peak_energy, timeup)
+	flasher.tween_property(glow, "energy", initial_energy, timedown).set_trans(Tween.TRANS_LINEAR)
 
 func show_guide():
 	""" Shows labels """

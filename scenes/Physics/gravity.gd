@@ -67,11 +67,11 @@ func acceleration(x, y, exceptions = [], as_dictionary = false):
 			net += value
 		return net
 
-func get_influential_massive_body(x, y):
-	var max_influence = 0
-	var influential_body
-	var accels = acceleration(x,y,[],true)
-	return influential_body
+#func get_influential_massive_body(x, y):
+	#var max_influence = 0
+	#var influential_body
+	#var accels = acceleration(x,y,[],true)
+	#return influential_body
 
 func accelerate_reactive_bodies(delta):
 	""" for each reactive body, go thru all massive bodies to get local acceleration and change velocity """

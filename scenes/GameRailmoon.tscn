@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mk10x")
 
-[node name="RailsExample" parent="." instance=ExtResource("2_q8il4")]
+[node name="Space" parent="." instance=ExtResource("2_q8il4")]
 
 [node name="Spotlight" parent="." instance=ExtResource("3_ravdn")]
 position = Vector2(763, 291)
@@ -73,13 +73,24 @@ grow_vertical = 2
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 size_flags_vertical = 3
-text = "shift+space to pause
-esc to title
-tab to toggle controls
+text = "you can accelerate forward or backwards
+you can accelerate nearby oreos 
+
 rails controls:
 	w/s to change speed
-asteroids controls:
-	wasd"
+free controls:
+	wasd
+
+cast acceleration magic:
+	q
+cast deceleration magic:
+	e
+
+shift+space to pause
+esc to title
+tab to toggle control style
+
+"
 
 [node name="Button" type="Button" parent="InfoPanel/VBoxContainer"]
 custom_minimum_size = Vector2(50, 60)

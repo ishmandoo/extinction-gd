@@ -1,6 +1,6 @@
 extends Control
 
-@onready var space = $RailsExample
+@onready var space = $Space
 @onready var pause_menu = $PauseMenu
 @onready var spotlight = $Spotlight
 @onready var infopanel = $InfoPanel
@@ -19,7 +19,7 @@ func _ready() -> void:
 	collect_groups()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	spotlight_follow_mouse()
 	process_input()
 	

@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_untgw")
 
-[node name="RailsExample" parent="." instance=ExtResource("2_54vyx")]
+[node name="Space" parent="." instance=ExtResource("2_54vyx")]
 
 [node name="Spotlight" parent="." instance=ExtResource("3_7cbbn")]
 position = Vector2(763, 291)

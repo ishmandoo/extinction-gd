@@ -25,6 +25,7 @@ size_scale = 1.0
 label = "GravityBody"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.517647, 0.360784, 0.819608, 1)
 light_mask = 7
 visibility_layer = 7
 texture = SubResource("CanvasTexture_oqahv")
