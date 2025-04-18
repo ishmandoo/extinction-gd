@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://fggrq28radnp"]
+
+[ext_resource type="Script" path="res://scenes/Game/goal_area.gd" id="1_q5jid"]
+[ext_resource type="PackedScene" uid="uid://dx2umo33ot6ww" path="res://scenes/Physics/orbit.tscn" id="2_4tilm"]
+
+[sub_resource type="ConcavePolygonShape2D" id="ConcavePolygonShape2D_kyux3"]
+segments = PackedVector2Array(0, 0, 10, 20, 10, 20, 30, 50, 0, 0, 0, 0)
+
+[node name="GoalArea" type="Area2D"]
+script = ExtResource("1_q5jid")
+
+[node name="Orbit" parent="." instance=ExtResource("2_4tilm")]
+position = Vector2(196, 244)
+points = PackedVector2Array(0, 0, 290, 207, 496, 305, 796, 267, 1368, 451)
+width = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("ConcavePolygonShape2D_kyux3")
+debug_color = Color(1, 0.235294, 0.701961, 1)

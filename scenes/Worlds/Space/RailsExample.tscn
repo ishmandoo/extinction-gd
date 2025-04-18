@@ -36,8 +36,6 @@ height = 0.5
 top_level = true
 position = Vector2(608, 345)
 rotation = -1.0057
-magic_L_strength = 100
-magic_R_strength = 100
 velocity_start = Vector2(30, 30)
 
 [node name="Star" parent="." instance=ExtResource("4_536pm")]
