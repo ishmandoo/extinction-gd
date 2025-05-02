@@ -1,10 +1,10 @@
 extends Control
 
-@onready var space_button = $VBoxContainer/HBoxContainer/PanelContainer2/Panel/SpaceLevelButton
+@onready var space_button = $VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer2/Panel/SpaceLevelButton
 @onready var cow_button = $VBoxContainer/HBoxContainer3/PanelContainer3/Panel/CowLevelButton
-@onready var space2_button = $VBoxContainer/HBoxContainer/PanelContainer3/Panel/Space2Button
-@onready var spacemoon_button = $VBoxContainer/HBoxContainer/PanelContainer/Panel/OneMoonButton
-@onready var railsexample_button = $VBoxContainer/HBoxContainer3/PanelContainer2/Panel/RailsExampleButton
+@onready var space2_button = $VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer3/Panel/Space2Button
+@onready var spacemoon_button = $VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Panel/OneMoonButton
+@onready var railsexample_button = $VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer4/Panel/RailsExampleButton
 var space_level_path = "res://scenes/Game.tscn"
 var cow_level_path = "res://scenes/Worlds/cow-level/main.tscn"
 var space2_level_path = "res://scenes/Game2.tscn"

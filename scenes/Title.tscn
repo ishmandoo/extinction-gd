@@ -20,30 +20,6 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer3"]
-custom_minimum_size = Vector2(120, 50)
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-
-[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer3/PanelContainer2"]
-layout_mode = 2
-
-[node name="RailsExampleButton" type="Button" parent="VBoxContainer/HBoxContainer3/PanelContainer2/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -41.0
-offset_top = -15.5
-offset_right = 41.0
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Rails example"
-
 [node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
@@ -72,16 +48,20 @@ text = "Cow level"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/PanelContainer"]
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="OneMoonButton" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/Panel"]
+[node name="OneMoonButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -96,16 +76,16 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "One star, one moon"
 
-[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/PanelContainer3"]
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer3"]
 layout_mode = 2
 
-[node name="Space2Button" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer3/Panel"]
+[node name="Space2Button" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer3/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -120,16 +100,16 @@ grow_horizontal = 2
 grow_vertical = 2
 text = " One star"
 
-[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/PanelContainer2"]
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer2"]
 layout_mode = 2
 
-[node name="SpaceLevelButton" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer2/Panel"]
+[node name="SpaceLevelButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer2/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -145,6 +125,30 @@ grow_vertical = 2
 text = "One star,
 three moons"
 
+[node name="PanelContainer4" type="PanelContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer4"]
+layout_mode = 2
+
+[node name="RailsExampleButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer4/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -15.5
+offset_right = 41.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Rails example"
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -158,4 +162,4 @@ custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Enxctinction"
+text = "Extinction"
